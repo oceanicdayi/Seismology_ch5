@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>地震學與板塊構造 · 第五章中文學習指南</title>
+<meta name="description" content="地震學與板塊構造（Seismology and Plate Tectonics）第五章原創中文教學摘要：板塊運動學、擴張中心、隱沒帶、板內地震、斷層力學，含互動模擬與測驗。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;800&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAFAF7;
+  --ink:#1C2230;
+  --ink-soft:#4A5266;
+  --teal:#0F6E6B;
+  --teal-soft:#E3F0EF;
+  --slab:#2B5B8A;
+  --slab-soft:#E8EFF6;
+  --magma:#D4481F;
+  --magma-soft:#FBE9E1;
+  --gold:#B98A2E;
+  --line:#D8D9D2;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --serif:'Noto Serif TC',serif;
+  --sans:'Noto Sans TC',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.85;font-size:16px}
+a{color:var(--teal)}
+.layout{display:grid;grid-template-columns:250px 1fr;max-width:1280px;margin:0 auto}
+/* ===== 深度導覽欄 ===== */
+nav.depth{position:sticky;top:0;height:100vh;overflow-y:auto;border-right:1px solid var(--line);padding:26px 0 40px;background:linear-gradient(180deg,#F6F3EA 0%,#EDE7D8 8%,#E3F0EF 18%,#D5E6E4 34%,#C9DCE8 52%,#B7CDE0 72%,#9FB6CF 100%)}
+nav.depth .brand{padding:0 20px 18px;border-bottom:1px dashed rgba(28,34,48,.25);margin-bottom:14px}
+nav.depth .brand b{font-family:var(--serif);font-size:1.05rem;display:block}
+nav.depth .brand span{font-size:.72rem;color:var(--ink-soft);letter-spacing:.08em}
+nav.depth a{display:flex;align-items:baseline;gap:10px;padding:9px 20px;color:var(--ink);text-decoration:none;font-size:.86rem;border-left:4px solid transparent}
+nav.depth a .no{font-family:var(--mono);font-size:.7rem;color:var(--ink-soft);min-width:2.2em}
+nav.depth a:hover,nav.depth a.on{border-left-color:var(--magma);background:rgba(255,255,255,.45);font-weight:700}
+nav.depth .depthlabel{padding:14px 20px 4px;font-size:.66rem;letter-spacing:.18em;color:var(--ink-soft);font-family:var(--mono)}
+/* ===== 主欄 ===== */
+main{padding:0 56px 120px;min-width:0}
+@media(max-width:980px){
+  .layout{grid-template-columns:1fr}
+  nav.depth{position:relative;height:auto;display:flex;flex-wrap:wrap;gap:0;padding:12px 8px}
+  nav.depth .brand,nav.depth .depthlabel{display:none}
+  nav.depth a{border-left:none;border-bottom:3px solid transparent;padding:6px 10px}
+  nav.depth a:hover,nav.depth a.on{border-bottom-color:var(--magma)}
+  main{padding:0 18px 90px}
+}
+/* ===== Hero ===== */
+header.hero{padding:64px 0 40px;border-bottom:3px solid var(--ink)}
+header.hero .eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.22em;color:var(--magma);margin-bottom:14px}
+header.hero h1{font-family:var(--serif);font-weight:800;font-size:clamp(1.9rem,4.4vw,3.1rem);line-height:1.25;letter-spacing:.01em}
+header.hero h1 em{font-style:normal;color:var(--teal)}
+header.hero p.sub{margin-top:18px;max-width:60ch;color:var(--ink-soft)}
+canvas#seismo{width:100%;height:110px;display:block;margin-top:30px;background:#fff;border:1px solid var(--line);border-radius:4px}
+.notice{margin-top:18px;font-size:.8rem;color:var(--ink-soft);background:var(--teal-soft);border-left:4px solid var(--teal);padding:10px 14px;border-radius:0 6px 6px 0}
+/* ===== 章節 ===== */
+section.ch{padding-top:70px}
+section.ch>h2{font-family:var(--serif);font-weight:800;font-size:1.75rem;border-bottom:2px solid var(--ink);padding-bottom:10px;display:flex;align-items:baseline;gap:14px}
+section.ch>h2 .no{font-family:var(--mono);font-size:.85rem;color:#fff;background:var(--ink);padding:2px 10px;border-radius:3px}
+section.ch h3{font-family:var(--serif);font-size:1.22rem;margin:40px 0 12px;color:var(--slab);border-left:5px solid var(--slab);padding-left:12px}
+section.ch h4{font-size:1rem;margin:26px 0 8px;color:var(--teal)}
+section.ch p{margin:12px 0;max-width:74ch}
+section.ch ul,section.ch ol{margin:12px 0 12px 1.6em;max-width:72ch}
+section.ch li{margin:6px 0}
+/* 卡片 */
+.keycard{background:var(--teal-soft);border:1px solid #BBD7D5;border-radius:8px;padding:18px 22px;margin:24px 0}
+.keycard h5{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--teal);margin-bottom:8px}
+.keycard ul{margin-left:1.4em}
+.example{background:var(--magma-soft);border:1px solid #EBC4B2;border-radius:8px;padding:16px 20px;margin:20px 0}
+.example h5{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--magma);margin-bottom:6px}
+.formula{font-family:var(--mono);background:#fff;border:1px solid var(--line);border-radius:6px;padding:12px 16px;margin:14px 0;overflow-x:auto;font-size:.92rem;line-height:1.7}
+.formula b{color:var(--magma)}
+.figure{margin:26px 0;background:#fff;border:1px solid var(--line);border-radius:8px;padding:18px}
+.figure svg{width:100%;height:auto;display:block}
+.figure figcaption{font-size:.82rem;color:var(--ink-soft);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px}
+.figure figcaption b{color:var(--ink)}
+/* 互動面板 */
+.lab{background:linear-gradient(135deg,#10303A,#163E49);color:#E9F2F1;border-radius:10px;padding:22px 24px;margin:30px 0}
+.lab h5{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;color:#7FD6CE;margin-bottom:10px}
+.lab label{display:block;font-size:.84rem;margin:10px 0 2px;color:#BFE0DC}
+.lab input[type=range]{width:100%;accent-color:#FF7A45}
+.lab input[type=number],.lab select{background:#0C2229;color:#E9F2F1;border:1px solid #2E5560;border-radius:5px;padding:6px 8px;font-family:var(--mono);width:110px}
+.lab .row{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end}
+.lab .out{font-family:var(--mono);background:#0C2229;border:1px solid #2E5560;border-radius:6px;padding:12px 14px;margin-top:14px;font-size:.9rem;line-height:1.8}
+.lab .out b{color:#FF9A6B}
+.lab button{background:var(--magma);border:none;color:#fff;font-family:var(--sans);font-weight:700;padding:8px 18px;border-radius:6px;cursor:pointer;margin-top:10px}
+.lab button:hover{filter:brightness(1.1)}
+.lab canvas{width:100%;background:#0C2229;border-radius:6px;margin-top:14px}
+.lab .note{font-size:.76rem;color:#8FB5B0;margin-top:8px}
+/* 表格 */
+table{border-collapse:collapse;margin:18px 0;font-size:.88rem;width:100%;max-width:680px}
+th,td{border:1px solid var(--line);padding:7px 12px;text-align:left}
+th{background:var(--slab-soft);font-weight:700}
+td.mono,th.mono{font-family:var(--mono);font-size:.82rem}
+/* 詞彙 */
+dfn{font-style:normal;font-weight:700;color:var(--slab);border-bottom:2px dotted var(--slab)}
+/* 摺疊 */
+details{border:1px solid var(--line);border-radius:8px;margin:14px 0;background:#fff;max-width:74ch}
+details summary{cursor:pointer;padding:12px 18px;font-weight:700;color:var(--slab)}
+details[open] summary{border-bottom:1px dashed var(--line)}
+details .body{padding:6px 18px 16px}
+/* 測驗 */
+.quiz{border:1px solid var(--line);border-radius:8px;background:#fff;padding:18px 22px;margin:18px 0;max-width:74ch}
+.quiz .q{font-weight:700;margin-bottom:8px}
+.quiz label{display:block;padding:7px 12px;border:1px solid var(--line);border-radius:6px;margin:6px 0;cursor:pointer;font-size:.92rem}
+.quiz label:hover{background:var(--teal-soft)}
+.quiz label.ok{background:#E1F2E4;border-color:#3E8E55}
+.quiz label.no{background:var(--magma-soft);border-color:var(--magma)}
+.quiz .fb{font-size:.85rem;margin-top:8px;display:none;border-left:4px solid var(--gold);padding:6px 12px;background:#FBF6EA}
+.quiz.done .fb{display:block}
+.scorebox{font-family:var(--mono);font-size:1rem;background:var(--ink);color:#fff;display:inline-block;padding:10px 20px;border-radius:8px;margin-top:10px}
+footer{margin-top:90px;border-top:2px solid var(--ink);padding-top:24px;font-size:.8rem;color:var(--ink-soft);max-width:74ch}
+:focus-visible{outline:3px solid var(--magma);outline-offset:2px}
+.toplink{position:fixed;right:18px;bottom:18px;background:var(--ink);color:#fff;text-decoration:none;font-family:var(--mono);font-size:.75rem;padding:8px 12px;border-radius:6px;opacity:.85}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="depth" aria-label="章節導覽">
+  <div class="brand"><b>地震學與板塊構造</b><span>CH.5 中文學習指南</span></div>
+  <div class="depthlabel">地殼 CRUST ▾</div>
+  <a href="#s51"><span class="no">5.1</span>簡介：板塊與地震</a>
+  <a href="#s52"><span class="no">5.2</span>板塊運動學</a>
+  <a href="#s53"><span class="no">5.3</span>擴張中心</a>
+  <div class="depthlabel">地函 MANTLE ▾</div>
+  <a href="#s54"><span class="no">5.4</span>隱沒帶</a>
+  <a href="#s55"><span class="no">5.5</span>海洋板內地震</a>
+  <a href="#s56"><span class="no">5.6</span>大陸地震與構造</a>
+  <a href="#s57"><span class="no">5.7</span>斷層與變形</a>
+  <div class="depthlabel">自我檢測 ▾</div>
+  <a href="#reading"><span class="no">＋</span>延伸閱讀方向</a>
+  <a href="#problems"><span class="no">✎</span>練習題（原創）</a>
+  <a href="#quiz"><span class="no">✓</span>綜合測驗</a>
+</nav>
+<main>
+
+<header class="hero">
+  <div class="eyebrow">SEISMOLOGY &amp; PLATE TECTONICS · 原創中文教學</div>
+  <h1>從一條波形，<br>讀懂<em>板塊如何推動地球</em></h1>
+  <p class="sub">本頁是針對 Stein &amp; Wysession《An Introduction to Seismology, Earthquakes, and Earth Structure》第五章所撰寫的<b>原創中文摘要與教學說明</b>：涵蓋板塊運動學、中洋脊與隱沒帶的熱模型、板內地震、以及斷層力學與摩擦理論。所有圖解皆為自行繪製的示意圖，並提供互動模擬與測驗，協助你把公式變成直覺。</p>
+  <canvas id="seismo" aria-hidden="true"></canvas>
+  <div class="notice">⚖️ 版權說明：本頁為<b>讀書摘要與教學筆記</b>，以自己的文字重新組織原書概念，未重製原書文字與圖片。深入學習請參閱原書（見「延伸閱讀方向」）。</div>
+</header>
+
+<!-- ============ 5.1 ============ -->
+<section class="ch" id="s51">
+<h2><span class="no">5.1</span>簡介：為什麼地震學與板塊構造分不開</h2>
+
+<p>板塊構造學說把地球最外層視為大約 <b>15 個近似剛性的板塊</b>，每塊厚約 100 公里，以每年數公分的速度（大約等於指甲生長的速度）彼此相對移動。「剛性」的意思是板塊內部幾乎不變形，<b>變形集中在板塊邊界</b>——那裡正是地震、造山與火山活動最密集的地方。</p>
+
+<h3>岩石圈是三重邊界層</h3>
+<p>板塊由<dfn>岩石圈</dfn>（lithosphere）構成，底下是較弱、可緩慢流動的<dfn>軟流圈</dfn>（asthenosphere）。岩石圈之所以特別，是因為它同時是三種「邊界層」：</p>
+<ul>
+<li><b>熱邊界層</b>：100 公里厚度內，溫度從深部約 1300–1400°C 驟降到地表約 0°C，是整個地函溫度梯度最劇烈的一層。</li>
+<li><b>力學邊界層</b>：岩石強度隨溫度升高而下降，因此冷的岩石圈遠比下方岩石堅硬，能整塊移動。</li>
+<li><b>化學邊界層</b>：岩石圈含地殼，成分與下方地函不同；大陸地殼密度低、不會隱沒，所以大陸岩石圈可保存數十億年，而海洋岩石圈不斷在中洋脊生成、在海溝回收，最老不超過約 2 億年。</li>
+</ul>
+
+<h3>三種板塊邊界</h3>
+<figure class="figure">
+<svg viewBox="0 0 880 300" role="img" aria-label="三種板塊邊界示意圖">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#1C2230"/></marker>
+    <marker id="arrR" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#D4481F"/></marker>
+  </defs>
+  <!-- 軟流圈 -->
+  <rect x="0" y="200" width="880" height="100" fill="#F3D9C8"/>
+  <text x="12" y="288" font-size="13" fill="#A65A2E">軟流圈（較熱、較弱）</text>
+  <!-- 海洋岩石圈左板 -->
+  <path d="M0,140 L300,140 L300,200 L0,200 Z" fill="#2B5B8A"/>
+  <path d="M300,140 L560,140 L560,200 L300,200 Z" fill="#3F76AC"/>
+  <!-- 中洋脊 -->
+  <path d="M285,140 L300,112 L315,140 Z" fill="#D4481F"/>
+  <text x="300" y="100" font-size="13" text-anchor="middle" fill="#D4481F" font-weight="bold">擴張中心（中洋脊）</text>
+  <line x1="255" y1="170" x2="205" y2="170" stroke="#1C2230" stroke-width="2.5" marker-end="url(#arr)"/>
+  <line x1="345" y1="170" x2="395" y2="170" stroke="#1C2230" stroke-width="2.5" marker-end="url(#arr)"/>
+  <!-- 隱沒帶 -->
+  <path d="M560,140 L760,140 L880,140 L880,200 L640,200 L560,200 Z" fill="#C9B28A"/>
+  <text x="760" y="128" font-size="13" text-anchor="middle" fill="#7A6233">大陸（上覆板塊）</text>
+  <path d="M560,140 L640,200 L770,290 L740,300 L600,210 L540,160 Z" fill="#3F76AC"/>
+  <text x="585" y="120" font-size="13" text-anchor="middle" fill="#2B5B8A" font-weight="bold">隱沒帶（海溝）</text>
+  <line x1="660" y1="232" x2="720" y2="276" stroke="#1C2230" stroke-width="2.5" marker-end="url(#arr)"/>
+  <!-- 火山 -->
+  <path d="M690,140 L702,112 L714,140 Z" fill="#D4481F"/>
+  <text x="702" y="104" font-size="12" text-anchor="middle" fill="#D4481F">火山弧</text>
+  <!-- 震源點 -->
+  <g fill="#D4481F">
+    <circle cx="600" cy="180" r="4"/><circle cx="640" cy="208" r="4"/><circle cx="685" cy="240" r="4"/><circle cx="725" cy="268" r="4"/>
+    <circle cx="296" cy="150" r="3.5"/><circle cx="306" cy="152" r="3.5"/>
+  </g>
+  <text x="630" y="262" font-size="12" fill="#D4481F">Wadati–Benioff 帶</text>
+  <!-- 轉形斷層 -->
+  <g transform="translate(60,30)">
+    <rect x="0" y="0" width="150" height="56" fill="#E8EFF6" stroke="#2B5B8A"/>
+    <line x1="0" y1="28" x2="150" y2="28" stroke="#D4481F" stroke-width="3" stroke-dasharray="6 4"/>
+    <line x1="30" y1="14" x2="75" y2="14" stroke="#1C2230" stroke-width="2" marker-end="url(#arr)"/>
+    <line x1="120" y1="42" x2="75" y2="42" stroke="#1C2230" stroke-width="2" marker-end="url(#arr)"/>
+    <text x="75" y="74" font-size="12" text-anchor="middle" fill="#2B5B8A">轉形斷層：運動平行邊界（俯視）</text>
+  </g>
+</svg>
+<figcaption><b>原創示意圖｜三種板塊邊界。</b>張裂邊界（中洋脊）兩側板塊互相遠離，物質上湧生成新岩石圈；聚合邊界（隱沒帶）一側板塊下沉回地函，沿傾斜面產生 Wadati–Benioff 帶地震；轉形斷層的相對運動則與邊界平行。判斷邊界類型的關鍵不是地形，而是<b>相對運動方向</b>。</figcaption>
+</figure>
+
+<h3>地震是描繪板塊的「光」</h3>
+<p>1960 年代全球標準地震儀網（WWSSN）建立後，規模 5 以上的地震終於可以被準確定位，全球震央圖呈現驚人的規律：</p>
+<ul>
+<li><b>淺源地震</b>沿中洋脊與轉形斷層連成細線，勾勒出海洋中的板塊邊界。</li>
+<li><b>深度超過 100 km 的地震</b>幾乎只出現在隱沒帶；把震源投影到垂直剖面上，會看到一條傾斜的地震帶——<dfn>Wadati–Benioff 帶</dfn>，直接標示出下沉板塊的位置（以發現者和達清夫與 Hugo Benioff 命名）。</li>
+<li><b>大陸的邊界帶寬而複雜</b>：例如印度—歐亞碰撞的地震帶從喜馬拉雅延伸深入中國；太平洋—北美邊界帶橫跨美國西部數百公里。剛性板塊只是理想化模型，在大陸尤其明顯。</li>
+<li><b>板內地震</b>雖然稀少，卻提醒我們板塊內部並非完全剛性，是研究板塊模型「失效之處」的重要資料。</li>
+</ul>
+
+<h3>板塊構造＝地球熱機的地表表現</h3>
+<p>地球內部熱量主要透過三種方式散失：<b>板塊循環</b>（海洋岩石圈生成—冷卻—隱沒，約佔 70%）、<b>地函熱柱</b>（熱點，約 5%）、以及<b>大陸的熱傳導</b>。冷的隱沒板塊是地函對流的下沉肢，中洋脊下方上湧的熱物質則是上升肢。板塊構造也深刻影響海洋與大氣的化學、長期氣候，甚至可能與生命起源（中洋脊熱泉）密切相關。</p>
+
+<div class="keycard">
+<h5>5.1 重點摘要</h5>
+<ul>
+<li>約 15 個剛性板塊、厚約 100 km、相對速度每年數公分；變形集中於邊界。</li>
+<li>岩石圈＝熱＋力學＋化學三重邊界層；海洋岩石圈 ≤ 約 200 Myr，大陸岩石圈可達數十億年。</li>
+<li>三種邊界由「相對運動方向」定義：張裂、聚合、轉形。</li>
+<li>全球震央分布勾勒板塊邊界；Wadati–Benioff 帶標示隱沒板塊。</li>
+<li>地震學提供板塊「運動學」（方向與速率）與「動力學」（驅動力）兩方面的關鍵證據。</li>
+</ul>
+</div>
+</section>
+
+<!-- ============ 5.2 ============ -->
+<section class="ch" id="s52">
+<h2><span class="no">5.2</span>板塊運動學：在球面上描述板塊運動</h2>
+
+<h3>5.2.1 相對運動與 Euler 極</h3>
+<p>板塊在球面上移動，所以不能用平面上的平移描述。根據 <dfn>Euler 定理</dfn>：剛體繞固定點（地心）的任何位移，都等於繞某條通過地心軸的旋轉。這條軸與地表的交點就是 <dfn>Euler 極</dfn>，旋轉用 <dfn>Euler 向量</dfn> ω 表示。板塊 j 相對板塊 i 在位置 r 的線速度為：</p>
+<div class="formula">v<sub>ji</sub> = <b>ω</b><sub>ji</sub> × <b>r</b>　　|v<sub>ji</sub>| = |ω<sub>ji</sub>| |r| sin γ</div>
+<p>其中 γ 是該點到 Euler 極的角距。三個直覺要點：</p>
+<ul>
+<li>邊界上每一點的<b>運動方向都沿著繞 Euler 極的小圓</b>（注意：是繞 Euler 極的「緯線」，不是地理緯線）。</li>
+<li>運動<b>速率隨離極距離增加</b>：在極點為零，距離 90° 處最大。整條邊界角速度相同，但線速度不同。</li>
+<li>邊界段落若平行小圓 → 轉形斷層（純走向滑移地震）；若相對運動離開邊界 → 擴張中心；朝向邊界 → 隱沒帶。<b>同一條板塊邊界可以同時包含三種型態</b>。</li>
+</ul>
+
+<figure class="figure">
+<svg viewBox="0 0 860 320" role="img" aria-label="Euler 極與小圓示意">
+  <circle cx="240" cy="160" r="140" fill="#E8EFF6" stroke="#2B5B8A" stroke-width="2"/>
+  <circle cx="240" cy="60" r="6" fill="#D4481F"/>
+  <text x="256" y="56" font-size="13" fill="#D4481F" font-weight="bold">Euler 極</text>
+  <path d="M150,98 A130,130 0 0 0 150,222" fill="none" stroke="#0F6E6B" stroke-width="2" stroke-dasharray="5 4"/>
+  <path d="M118,70 A175,175 0 0 0 118,250" fill="none" stroke="#0F6E6B" stroke-width="2" stroke-dasharray="5 4"/>
+  <ellipse cx="240" cy="60" rx="58" ry="22" fill="none" stroke="#0F6E6B" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="240" y="306" font-size="12" text-anchor="middle" fill="#0F6E6B">虛線＝繞極小圓（轉形斷層方向）</text>
+  <g stroke="#1C2230" stroke-width="2.5" fill="none">
+    <line x1="236" y1="96" x2="270" y2="100" marker-end="url(#arr)"/>
+    <line x1="172" y1="140" x2="206" y2="158" marker-end="url(#arr)"/>
+    <line x1="150" y1="215" x2="180" y2="248" marker-end="url(#arr)"/>
+  </g>
+  <text x="300" y="118" font-size="12">慢</text>
+  <text x="226" y="186" font-size="12">中</text>
+  <text x="206" y="270" font-size="12">快</text>
+  <g transform="translate(470,30)">
+    <text x="0" y="8" font-size="14" font-weight="bold" fill="#1C2230">速率公式（站點緯度 λ、經度 μ；極 θ、φ）</text>
+    <text x="0" y="46" font-size="13" font-family="JetBrains Mono">v_NS = a|ω| cosθ sin(μ−φ)</text>
+    <text x="0" y="74" font-size="13" font-family="JetBrains Mono">v_EW = a|ω|[sinθ cosλ − cosθ sinλ cos(μ−φ)]</text>
+    <text x="0" y="102" font-size="13" font-family="JetBrains Mono">速率 = √(v_NS² + v_EW²)</text>
+    <text x="0" y="130" font-size="13" font-family="JetBrains Mono">方位角 = 90° − atan2(v_NS, v_EW)</text>
+    <text x="0" y="170" font-size="12" fill="#4A5266">單位小技巧：把 °/Myr 換成 rad/yr 時，</text>
+    <text x="0" y="192" font-size="12" fill="#4A5266">地球半徑取 km，結果剛好是 mm/yr</text>
+    <text x="0" y="214" font-size="12" fill="#4A5266">（1 mm/yr = 1 km/Myr，易於想像地質時間尺度）。</text>
+  </g>
+</svg>
+<figcaption><b>原創示意圖｜Euler 極幾何。</b>運動方向沿繞極小圓，速率 ∝ sin(離極角距)。右側為由 Euler 向量計算任一點速率與方位角的公式組。</figcaption>
+</figure>
+
+<div class="example">
+<h5>實例：太平洋—北美邊界一條線，三種邊界</h5>
+<p>以 NUVEL-1A 模型的 PA–NA Euler 向量（極約在 48.7°S, 101.8°E，|ω| ≈ 0.749°/Myr）計算：在聖安德魯斯斷層上一點（36°N, 239°E）預測速率約 <b>46 mm/yr、方位 N36°W</b>，與斷層平均走向 N41°W 大致吻合 → 以走向滑移為主的轉形邊界；同一邊界往北到阿留申海溝（62°N, 212°E）預測約 <b>53 mm/yr、N14°W</b>，方向指向海溝 → 隱沒帶；而加州灣內的洋脊段則是張裂。同一個 Euler 向量解釋了整條邊界的型態變化。</p>
+</div>
+
+<div class="lab" id="eulerlab">
+<h5>互動實驗 A｜EULER 極速度計算器</h5>
+<p style="font-size:.85rem">選擇板塊對（NUVEL-1A，相對北美），輸入站點座標，計算該處板塊相對運動的速率與方位角。試試聖安德魯斯（36, −121）與阿留申（62, −148）。</p>
+<div class="row">
+  <div><label for="plsel">板塊（相對北美 NA）</label>
+  <select id="plsel">
+    <option value="-48.709,101.833,0.7486">太平洋 PA</option>
+    <option value="62.408,135.831,0.2137">歐亞 EU</option>
+    <option value="61.544,-109.781,0.6362">納茲卡 NZ</option>
+    <option value="27.883,-120.679,1.3572">科科斯 CO</option>
+    <option value="-22.417,67.203,0.8297">胡安德富卡 JF</option>
+    <option value="78.807,38.279,0.2380">非洲 AF</option>
+  </select></div>
+  <div><label for="slat">站點緯度（°N）</label><input type="number" id="slat" value="36" step="0.1"></div>
+  <div><label for="slon">站點經度（°E，西經用負值）</label><input type="number" id="slon" value="-121" step="0.1"></div>
+  <div><button id="ebtn">計算</button></div>
+</div>
+<div class="out" id="eout">輸入後按「計算」。</div>
+<div class="note">公式：v = ω × r；輸出為所選板塊相對北美板塊的線速度。方位角以正北為 0°、順時針為正。</div>
+</div>
+
+<h3>5.2.2 全球板塊運動模型怎麼建出來的</h3>
+<p>傳統上結合三種邊界資料反演所有板塊的 Euler 向量：</p>
+<ol>
+<li><b>擴張速率</b>：海床磁異常條帶可用地磁倒轉年代表定年，距離 ÷ 年代＝速率（平均過去數百萬年）。</li>
+<li><b>運動方向</b>：轉形斷層的走向，以及轉形與隱沒帶地震的滑移向量。</li>
+<li><b>幾何約束</b>：滑移向量與轉形都落在繞極小圓上 → 極必在與其垂直的大圓上；速率 ∝ sin(角距)。</li>
+</ol>
+<p>把全部資料做最小平方反演，就得到像 <b>NUVEL-1A</b> 這樣的全球相對運動模型。重要性質：</p>
+<ul>
+<li><b>向量加法</b>：ω<sub>jk</sub> = ω<sub>ji</sub> + ω<sub>ik</sub>，且 ω<sub>ij</sub> = −ω<sub>ji</sub>。隱沒帶只能直接觀測「方向」，其聚合「速率」要靠全球板塊環路（plate circuit closure）間接求得。</li>
+<li><b>檢驗剛性</b>：若三板塊交會點的三組最適 Euler 向量總和顯著不為零，代表板塊不剛性或模型有問題——中印度洋的分析便由此認出印度與澳洲其實是<b>由漫散邊界帶分隔的不同板塊</b>。</li>
+<li>邊界帶約佔地表 15%，卻住了全球約 40% 的人口——板塊運動學直接連結地震災害評估。</li>
+</ul>
+
+<h3>5.2.3 太空大地測量：Wegener 的夢想成真</h3>
+<p>Wegener 在 1915 年就想用天文測量證明大陸漂移，受限於精度而失敗。今日 <b>VLBI（特長基線干涉）、SLR（衛星雷射測距）、GPS</b> 已能以每年數公釐的精度量測站點運動。最重要的發現之一：<b>數年尺度的大地測量速率與平均三百萬年的 NUVEL-1A 預測高度一致</b>（迴歸斜率約 0.94）——板塊運動在百萬年尺度上是穩定的；邊界上的地震是陣發的，但黏滯軟流圈像阻尼器，使板塊內部間的運動平滑而穩定。太空測地更進一步量到<b>邊界帶內部</b>的變形分布，例如北美東部站點彼此相對運動小於 2 mm/yr（定義穩定板塊內部參考系），而加州站點速度向西遞增。</p>
+
+<h3>5.2.4 絕對運動：板塊相對深部地函怎麼動</h3>
+<ul>
+<li><b>熱點假說</b>：固定的深部熱源在移動板塊上燒出一串年齡遞增的火山鏈。夏威夷—天皇海山鏈從現今活躍的夏威夷島，到中途島約 28 Ma，再到沒入阿留申海溝處約 70 Ma；約 43 Ma 處的轉折曾被解讀為太平洋板塊改向。大陸版的例子是黃石熱點與蛇河平原玄武岩。</li>
+<li>熱點是否真為深部熱柱仍有爭議（部分熱點會移動、有些鏈無清楚年齡序列、湧升流地震成像困難），因此也常用 <b>NNR（無淨旋轉）</b>參考系：全球板塊面積加權的絕對運動總和為零。兩者結果相近。</li>
+<li>換算關係：ω<sub>ij</sub> = Ω<sub>i</sub> − Ω<sub>j</sub>（相對 Euler 向量＝絕對向量之差）。知道一塊板塊的絕對運動，即可推得所有板塊。</li>
+<li>應用：地函<b>地震波各向異性</b>常與絕對板塊運動方向一致，反映橄欖石定向排列的地函流。</li>
+</ul>
+
+<div class="keycard">
+<h5>5.2 重點摘要</h5>
+<ul>
+<li>球面上的板塊相對運動＝繞 Euler 極的旋轉；方向沿小圓、速率 ∝ sinγ。</li>
+<li>全球模型（NUVEL-1A）由擴張速率（磁異常）＋方向（轉形、滑移向量）反演；隱沒速率靠環路閉合。</li>
+<li>太空測地（GPS/VLBI/SLR）證實板塊運動穩定，並揭示邊界帶內部變形。</li>
+<li>絕對運動由熱點軌跡或 NNR 參考系推估；ω<sub>ij</sub> = Ω<sub>i</sub> − Ω<sub>j</sub>。</li>
+</ul>
+</div>
+</section>
+
+<!-- ============ 5.3 ============ -->
+<section class="ch" id="s53">
+<h2><span class="no">5.3</span>擴張中心：岩石圈的誕生與冷卻</h2>
+
+<h3>5.3.1 脊—轉形幾何：常被誤解的一張圖</h3>
+<p>中洋脊由許多擴張段組成，段與段之間由轉形斷層連接。最容易搞錯的觀念是：<b>轉形斷層上的滑移並不是「把洋脊錯開」的原因</b>。洋脊兩段的偏移是原本就存在的幾何；只要兩側擴張對稱，轉形斷層的長度不會隨時間改變——這和持續累積位移的一般平移斷層（transcurrent fault）完全不同。判斷左移或右移要看<b>兩側板塊的相對運動</b>，而非脊段的偏移方向。</p>
+<ul>
+<li>地震幾乎只發生在<b>兩個脊段之間的「活動段」</b>；活動段向外的延伸稱<dfn>破裂帶</dfn>（fracture zone），兩側已屬同一板塊、無相對運動、無地震，但因兩側岩石圈年齡不同仍留有地形差異。</li>
+<li><b>慢速脊（如中大西洋脊，~33 mm/yr）</b>：脊軸有中央裂谷，脊段上有<b>正斷層</b>地震（節面平行脊軸），轉形上是走向滑移地震。</li>
+<li><b>快速脊（如東太平洋隆起，~90–150 mm/yr）</b>：脊軸是隆起而非裂谷，脊段上幾乎沒有地震。經驗分界約在全擴張速率 60 mm/yr。</li>
+</ul>
+
+<h3>5.3.2 半空間冷卻模型：一條 √t 解釋海洋</h3>
+<p>核心想法極簡：地函溫度 T<sub>m</sub>（約 1300–1400°C）的熱物質在脊軸上升到海床（表面溫度 T<sub>s</sub> ≈ 0°C），隨板塊以半擴張速率 v 移走並從上方冷卻。因為水平移動遠快於水平熱傳導，問題化簡為<b>一維垂直冷卻</b>，即「半空間在 t = 0 表面突然降溫」的經典熱傳導問題：</p>
+<div class="formula">∂T/∂t = κ ∂²T/∂z²　→　T(z,t) = T<sub>m</sub>·erf( z / (2√(κt)) )，　κ = k/(ρC<sub>p</sub>)＝熱擴散係數</div>
+<p>誤差函數 erf 的性質給出本章最重要的尺度律：<b>等溫線深度 ∝ √(岩石圈年齡)</b>。由此推得一連串可觀測的預測：</p>
+<ul>
+<li><b>海水深度 ∝ √t</b>：冷卻使岩石圈變密、依均衡原理下沉。h(t) = (2/√π)·√(κt)·αρ<sub>m</sub>T<sub>m</sub>/(ρ<sub>m</sub>−ρ<sub>w</sub>)。這正是「中洋脊之所以是山脊」的原因——兩側海床因年齡漸老而漸深。</li>
+<li><b>海床熱流 ∝ 1/√t</b>：q(t) = kT<sub>m</sub>/√(πκt)，年輕海床熱流高（部分熱量由海水循環帶走，所以 &lt;50 Ma 的觀測值常低於純傳導預測）。</li>
+<li><b>強度、地震深度、波速都隨年齡增加</b>：彈性厚度約對應 400°C 等溫線、海洋板內地震下限約 600–800°C、低速帶頂約 1000°C——「岩石圈厚度」依定義方式而異，反映岩石強度與變形速率有關。</li>
+</ul>
+<p><b>板模型（plate model）修正</b>：實測海深在約 70 Ma 後「趨平」，半空間模型無法解釋，於是改設岩石圈演化趨向固定厚度 L、底溫固定 T<sub>m</sub>（底部持續供熱）。以海深＋熱流資料反演的 GDH1 參數為 <b>L ≈ 95 ± 15 km、T<sub>m</sub> ≈ 1450 ± 250°C</b>。年輕時兩模型一致（√t 行為），老海床則趨向常數海深與熱流。</p>
+
+<div class="lab" id="coollab">
+<h5>互動實驗 B｜岩石圈冷卻模擬器（半空間模型）</h5>
+<p style="font-size:.85rem">拖動年齡滑桿，觀察等溫線如何以 √t 加深，以及對應的海深與熱流預測（κ = 10⁻⁶ m²/s、T<sub>m</sub> = 1350°C）。</p>
+<label for="agesl">岩石圈年齡 t：<span id="agev" style="color:#FF9A6B;font-family:'JetBrains Mono'">40</span> Myr</label>
+<input type="range" id="agesl" min="1" max="160" value="40" step="1">
+<canvas id="coolcv" height="240"></canvas>
+<div class="out" id="coolout"></div>
+<div class="note">注意 √t 的意義：年齡變 4 倍，等溫線深度只變 2 倍。這也是任何擴散過程的共同特徵（例如熔岩流冷卻）。</div>
+</div>
+
+<h3>5.3.3 脊與轉形地震透露的熱結構</h3>
+<ul>
+<li><b>地震受溫度上限控制</b>：脊軸正斷層地震的深度與最大地震矩都隨擴張速率增加而下降——快脊較熱、可脆性破裂的岩層較薄。轉形斷層亦然：其溫度約為兩側板塊溫度的平均，中點最冷、兩端最熱；最大地震矩隨擴張速率下降。</li>
+<li><b>無震滑移問題</b>：假設 600–700°C 以淺的斷層面積皆以地震滑移，主要大西洋轉形的「地震滑移率」普遍低於板塊運動預測 → 若取樣時間具代表性，<b>相當比例的板塊運動以無震方式進行</b>。這個未解問題會在隱沒帶（5.4.3）與板內變形帶（5.6.2）反覆出現。</li>
+<li><b>脊的改組：Easter 微板塊</b>。東太平洋隆起在復活節島附近有兩條近平行的脊段，地震只發生在脊上、不發生在其間 → 中間是近剛性微板塊。南界出現「不該出現」的正斷層地震（此處是 15 cm/yr 的超快脊），磁異常顯示東脊正向北「傳播」接管西脊：新脊尖端擴張慢、向南漸快 → 微板塊旋轉，北界壓縮（逆衝）、南界拉張（正斷層）。最終舊脊死亡、岩石圈從納茲卡板塊移交給太平洋板塊，海床留下化石脊與 V 形磁異常——這是洋脊改組的常見方式。</li>
+</ul>
+
+<div class="keycard">
+<h5>5.3 重點摘要</h5>
+<ul>
+<li>轉形斷層滑移≠造成脊段偏移；地震集中於活動段，破裂帶無相對運動。</li>
+<li>半空間冷卻：T = T<sub>m</sub>erf(z/2√(κt))；等溫線深度、海深 ∝ √t，熱流 ∝ 1/√t。</li>
+<li>板模型（GDH1：~95 km、~1450°C）解釋老海床海深與熱流的「趨平」。</li>
+<li>慢脊有裂谷與正斷層地震、快脊有軸隆無震；分界約 60 mm/yr——皆是熱結構控制脆性層厚度的表現。</li>
+<li>轉形地震滑移率常小於板塊運動 → 無震滑移普遍存在。</li>
+</ul>
+</div>
+</section>
+
+<!-- ============ 5.4 ============ -->
+<section class="ch" id="s54">
+<h2><span class="no">5.4</span>隱沒帶：冷板塊重返地函</h2>
+
+<h3>整體圖像</h3>
+<p>隱沒帶是地函對流的下沉肢。典型海洋—海洋聚合會形成火山島弧與弧後盆地；海洋—大陸聚合形成安地斯型山脈；大陸—大陸碰撞（如喜馬拉雅）因大陸地殼無法隱沒，只造成地殼增厚與淺源地震、<b>不形成 Wadati–Benioff 帶</b>。依深度把地震分為：淺源（&lt;70 km）、中源（70–300 km）、深源（&gt;300 km）。淺源地震主要與兩板塊交互作用有關（最大者在板塊交界面），中深源地震則發生在下沉板塊冷的內部。</p>
+
+<figure class="figure">
+<svg viewBox="0 0 880 360" role="img" aria-label="隱沒帶綜合剖面與各類地震">
+  <rect x="0" y="60" width="880" height="300" fill="#FBEFE6"/>
+  <rect x="0" y="40" width="880" height="20" fill="#CDE6F5"/>
+  <path d="M0,60 L420,60 L520,120 L640,210 L760,330 L720,345 L600,225 L480,135 L0,135 Z" fill="#2B5B8A"/>
+  <path d="M420,60 L880,60 L880,140 L640,140 L520,120 Z" fill="#C9B28A"/>
+  <path d="M598,60 L610,28 L622,60 Z" fill="#D4481F"/>
+  <text x="610" y="20" font-size="12" text-anchor="middle" fill="#D4481F">火山弧</text>
+  <text x="120" y="105" font-size="13" fill="#fff">海洋岩石圈（下沉板塊）</text>
+  <text x="760" y="100" font-size="13" fill="#6E5A2E">上覆板塊</text>
+  <text x="430" y="52" font-size="12" fill="#1C2230" font-weight="bold">海溝</text>
+  <g fill="#FFD24D"><circle cx="380" cy="92" r="5"/><circle cx="402" cy="80" r="4"/></g>
+  <text x="300" y="170" font-size="12" fill="#8a6d00">① 撓曲地震：板塊彎曲，上部張裂（少數可極大，如 1933 三陸）</text>
+  <line x1="372" y1="150" x2="388" y2="100" stroke="#8a6d00" stroke-width="1.5"/>
+  <g fill="#FF6B3D"><circle cx="470" cy="105" r="6"/><circle cx="500" cy="122" r="6"/></g>
+  <text x="560" y="170" font-size="12" fill="#C23A12">② 板間逆衝大震（megathrust）：釋放閉鎖的板塊運動</text>
+  <line x1="556" y1="158" x2="500" y2="126" stroke="#C23A12" stroke-width="1.5"/>
+  <g fill="#FFD24D"><circle cx="560" cy="165" r="4"/><circle cx="588" cy="186" r="4"/><circle cx="615" cy="205" r="4"/></g>
+  <text x="690" y="230" font-size="12" fill="#8a6d00">③ 中源（70–300 km）：</text>
+  <text x="690" y="248" font-size="12" fill="#8a6d00">沿板塊頂部、以下傾張力為主</text>
+  <line x1="686" y1="226" x2="618" y2="206" stroke="#8a6d00" stroke-width="1.5"/>
+  <g fill="#9BE8FF"><circle cx="660" cy="262" r="4"/><circle cx="688" cy="288" r="4"/><circle cx="712" cy="312" r="4"/></g>
+  <text x="430" y="300" font-size="12" fill="#2B5B8A">④ 深源（300–~700 km）：下傾壓縮為主，</text>
+  <text x="430" y="318" font-size="12" fill="#2B5B8A">　 約 600 km 達峰值；可能與相變有關</text>
+  <line x1="640" y1="296" x2="688" y2="290" stroke="#2B5B8A" stroke-width="1.5"/>
+  <text x="14" y="350" font-size="11" fill="#A65A2E">提醒：並非每個隱沒帶都具備全部特徵（傾角、深度、雙重震帶皆因地而異）。</text>
+</svg>
+<figcaption><b>原創示意圖｜隱沒帶的地震家族。</b>由外隆起的撓曲地震、海溝處的板間逆衝大震，到板塊內部的中源與深源地震，各有不同的力學成因與機制型態。</figcaption>
+</figure>
+
+<h3>5.4.1 隱沒板塊的熱模型</h3>
+<p>隱沒的本質是<b>冷板塊下沉的速度遠快於它被周圍地函加熱的速度</b>，因此板塊在深部仍維持低溫、高密度、高強度——這解釋了為何板塊內能傳遞較快、衰減較低的地震波（高 Q 路徑 vs 低 Q 地函路徑的經典觀測），也解釋了深震為何可能存在。解析模型把厚 L 的板塊以速率 v 沉入溫度 T<sub>m</sub> 的地函，解含平流項的熱方程，得到無因次<b>熱雷諾數 R = vL/(2κ)</b>：隱沒輸送冷物質的速率與熱傳導加熱速率之比。重要結果：</p>
+<div class="formula">某等溫線可達的最大下傾距離 x₀ ∝ v·L²；換算深度再乘 sinδ（δ＝傾角）。<br>若 L² ∝ 板塊年齡 t，則等溫線最大深度 ∝ <b>熱參數 φ = t · v · sinδ</b></div>
+<ul>
+<li><b>深震與 φ 的關係</b>：把各隱沒帶最大震源深度對 φ 作圖，深度隨 φ 增加；<b>300 km 以深的深震只出現在 φ ≳ 5000 km 的隱沒帶</b>。例：阿留申（~50 Ma、70 mm/yr，φ≈2500 km）無深震；東加（~140 Ma、140 mm/yr，φ≈17,000 km）深震豐富。</li>
+<li><b>地震停止≠板塊熱平衡</b>：模型顯示板塊最冷部位約 10 Myr 才升到地函溫度的一半（此時已達 ~660 km），熱異常可一路維持到核函邊界。660 km 以深無震另有原因（見後）。</li>
+<li>模型可加入絕熱增溫（adiabat）、相變潛熱、摩擦生熱等修正；數值模型結果與解析模型相近。以<b>層析成像檢驗</b>：把熱模型轉成波速異常、用實際射線取樣「模糊化」後，與觀測影像高度相似 → 熱模型大致正確（誤差或在數百度內），且提醒我們層析影像中板塊「變寬、變平」可能是取樣造成的假象。</li>
+</ul>
+
+<div class="lab" id="philab">
+<h5>互動實驗 C｜熱參數 φ 判斷器：這個隱沒帶會有深震嗎？</h5>
+<div class="row">
+  <div><label for="page2">板塊年齡 t（Myr）</label><input type="number" id="page2" value="100" min="1" max="200"></div>
+  <div><label for="prate">聚合速率 v（mm/yr）</label><input type="number" id="prate" value="80" min="10" max="200"></div>
+  <div><label for="pdip">傾角 δ（°）</label><input type="number" id="pdip" value="45" min="10" max="90"></div>
+  <div><button id="pbtn">計算 φ</button></div>
+</div>
+<div class="out" id="pout">φ = t × v × sinδ（單位換算後以 km 表示）。</div>
+<div class="note">經驗法則：φ ≳ 5000 km 的隱沒帶才觀測到 300 km 以深的深震（如東加）；φ 小者（如阿留申）僅有中源地震。</div>
+</div>
+
+<h3>5.4.2 板塊內的中、深源地震</h3>
+<p><b>深度分布的雙峰之謎</b>：全球地震數隨深度遞減，在約 300 km 出現極小值，之後回升、在約 600 km 達峰，700 km 前驟減為零。震源機制也隨深度切換：<b>300 km 以淺以下傾張力為主，以深轉為下傾壓縮</b>。</p>
+<p><b>柱體類比</b>幫助理解：想像一根直立、受自身重量作用的岩柱。若只在底部支撐 → 全柱受壓；只在頂部吊著 → 全柱受張；<b>上下都支撐 → 上半張、下半壓</b>。觀測到的「淺張深壓」正像第三種情況：板塊的負浮力（slab pull）大部分被局部阻力（黏滯地函＋板間界面）平衡，並非整片板塊「拉著」海面板塊跑——所以 slab pull 這名字其實有誤導性。佐證：(1) 板塊絕對速度與其邊界中「隱沒邊界比例」正相關 → 板塊負浮力確是主要驅動力；(2) 老海洋岩石圈內以逆衝（壓縮）機制為主 → 隱沒帶對板塊其餘部分的淨效應不是「拉」。</p>
+<div class="formula">slab pull（解析模型）：F = g·α·ρ<sub>m</sub>·T<sub>m</sub>·v·L²·/(24κ)　——本質是冷板塊與周圍地函的密度差所致的<b>負熱浮力</b></div>
+<p><b>相變讓故事更精彩</b>。板塊比同深度地函冷，礦物相變的深度因此偏移（Clapeyron 方程 γ = dP/dT = ΔH/(TΔV)）：</p>
+<ul>
+<li><b>410 km：橄欖石→瓦茲利石（尖晶石結構）</b>，放熱、Clapeyron 斜率為正 → 在冷板塊內<b>上移</b>（變淺）。板塊內提早出現較密的相 → 額外負浮力，<b>助推隱沒</b>。</li>
+<li><b>660 km：林伍德石→鈣鈦礦＋鎂方鐵礦</b>，吸熱、斜率為負 → 在板塊內<b>下移</b>（變深）→ 正浮力，<b>阻礙隱沒</b>。兩種偏移皆已被走時研究觀測到。</li>
+<li><b>亞穩橄欖石楔</b>：最冷的板塊中，相變反應趕不上下沉速度，低壓相橄欖石可亞穩地存活到更深（類比：鑽石在地表亞穩存在、過冷水低於冰點仍為液態）。楔體密度低 → 正浮力，可能形成負回饋調節隱沒速率（沉太快 → 楔變大 → 驅動力減小 → 變慢）。</li>
+<li><b>深震成因假說</b>：高壓下一般破裂應被抑制，深震為何存在？候選機制包括：(a) <b>轉變斷層作用</b>（transformational faulting）——亞穩橄欖石沿薄剪切帶轉變為尖晶石時失穩滑動，只能發生在放熱的橄欖石→尖晶石轉變 → 自然解釋深震侷限於過渡帶、且深度隨 φ 增加；(b) 含水礦物脫水弱化斷層；(c) 細粒尖晶石的快速潛變。但目前尚無地震學證據找到亞穩楔，且大深震破裂面似乎超出預期楔體範圍——問題未解。</li>
+</ul>
+<p><b>應力模型統整</b>：數值模型顯示，無論板塊在 660 km 遇到高黏滯層或被擋住，皆預測「上張下壓」且應力大小在 300–410 km 有極小值、500–700 km 回升——<b>與地震深度分布形態一致</b>；含相變浮力的模型也得到類似結果。換言之，深震與中源地震不必是不同物理，雙峰也許只反映應力極小值。</p>
+<p><b>實際板塊更複雜</b>：西北太平洋剖面顯示深震「補丁狀」分布，在島弧交會的尖點處驟淺；最大深震偏在深震區邊緣（或孤立於主帶之外），可能與板塊撕裂、殘片中的亞穩橄欖石有關。部分隱沒帶（如東北日本）有<b>雙重震帶</b>：兩層地震面相距 30–40 km，上層下傾壓縮、下層下傾張力，成因假說包括板塊「反彎」（unbending）釋放彎曲應力、或板塊在不同黏滯度層間「下垂」——為何只有部分隱沒帶有雙重震帶仍是謎。</p>
+<p><b>板塊的最終去向</b>：層析成像顯示部分板塊在 660 km 處被偏折、滯留，但最終多會穿入下部地函（影響上下地函的熱與質量交換，是地球演化的核心問題之一）。中源地震的另一主流模型：地震發生在隱沒的<b>海洋地殼</b>內，與含水礦物脫水及輝長岩→榴輝岩轉變有關——脫水釋出的水弱化斷層、促進反應；釋入上方軟流圈的水造成部分熔融，正好解釋<b>島弧火山位於中源地震帶上方</b>。</p>
+
+<h3>5.4.3 板間海溝地震：地球上最大的地震</h3>
+<ul>
+<li>1904–76 年間規模最大的地震幾乎都是隱沒帶的板間逆衝事件，包括儀器紀錄前兩大：<b>1960 智利（M<sub>w</sub> 9.5，斷層 800×200 km、滑移約 21 m、局部隆起 6 m）與 1964 阿拉斯加（M<sub>w</sub> 9.2）</b>。</li>
+<li>為什麼海溝逆衝能比聖安德魯斯型轉形斷層大這麼多（1906 舊金山地震的地震矩約比 1964 阿拉斯加小 100 倍）？因為破裂面積受「低於臨界溫度的冷區」限制：<b>緩傾的板間逆衝面（megathrust）冷區下傾延伸遠大於直立轉形斷層</b>。</li>
+<li><b>滑移分配（slip partitioning）</b>：斜向聚合時，前弧地塊（forearc sliver）可與上覆板塊分離——海溝處接近純逆衝，平行海溝的走向滑移由內陸斷層吸收；這使海溝地震滑移向量介於海溝法線與板塊聚合方向之間，並造成板塊環路不閉合。</li>
+<li><b>時空規律與地震空區</b>：日本南海海槽自 1498 年以來約每 125 年破裂一次、斷層區段相似（有時整段一次滑完、有時分數年數次）→「久未滑動的區段是空區、較危險」直覺合理，但實際預測成效不佳。</li>
+<li><b>地震耦合係數</b>（seismic coupling，板塊運動中以地震滑移釋放的比例）：千島海溝 1952–73 六次大震平均滑移 2–3 m、間隔約百年 → 地震滑移率僅板塊運動的<b>約三分之一</b>；智利 1960 型推估卻「超過」聚合速率（可能高估了歷史地震或近 400 年頻率偏高）。全球統計：耦合係數普遍遠小於 1，且<b>與聚合速率、板塊年齡皆無明確相關</b>；最大地震規模傾向出現在「年輕板塊快速隱沒」處，但 Chile 型（強耦合）vs Mariana 型（近無震）的力學解釋仍未確立。教訓：難以區分「空區」與「以無震滑移為主的區段」——不能同時主張「最近大震多的地方危險」和「最近沒震的地方是空區也危險」。</li>
+<li><b>板內撓曲地震</b>：板塊進入海溝前向上撓曲，淺部（&lt;25 km）正斷層、深部（40–50 km）逆衝，夾出中性面，約束岩石圈力學厚度。少數巨大正斷層事件（1933 三陸、1965 Rat Island、1977 印尼）可能是 slab pull 撕裂整片板塊的「解耦」事件；餘震是否貫穿整個岩石圈，或受溫度限制只破裂上部，解讀仍有歧義。</li>
+</ul>
+
+<div class="keycard">
+<h5>5.4 重點摘要</h5>
+<ul>
+<li>板塊下沉快於加熱 → 冷、密、強；高波速低衰減；熱參數 φ = t·v·sinδ 控制地震最大深度（深震需 φ ≳ 5000 km）。</li>
+<li>機制隨深度切換：中源下傾張力、深源下傾壓縮——如同上下皆支撐的重力柱；slab pull 主要被局部阻力平衡。</li>
+<li>410 km 相變上移（助沉）、660 km 相變下移（阻沉）；亞穩橄欖石楔與轉變斷層作用是深震主要候選機制。</li>
+<li>板間逆衝產生地球最大地震（1960 智利 M9.5）；破裂尺度受溫度限制的冷區面積控制。</li>
+<li>地震耦合普遍 &lt;1：無震滑移是常態；空區概念在實務預測上受限。</li>
+</ul>
+</div>
+</section>
+
+<!-- ============ 5.5 ============ -->
+<section class="ch" id="s55">
+<h2><span class="no">5.5</span>海洋板內地震與構造</h2>
+
+<h3>5.5.1 板內地震發生在哪裡？</h3>
+<p>絕大多數地震（尤其以地震矩計）發生於板塊邊界，但<b>板內地震</b>提供了不可取代的資訊：它們證明真實板塊偏離「完全剛性」的理想，內部有變形、邊界有漫散帶。理解這類地震的好方法是想成一個<b>層級</b>：</p>
+<ol>
+<li><b>極慢速板塊邊界</b>：例如歐亞—非洲邊界在大西洋段（直布羅陀—亞速）地形與地震都不明顯，但震源機制呈現清楚的過渡——亞速附近 Terceira 裂谷的<b>張裂</b> → Gloria 轉形斷層段的<b>走向滑移</b> → 直布羅陀及地中海的<b>壓縮</b>（如 1980 阿爾及利亞 El Asnam M<sub>s</sub> 7.3）。原因：Euler 極就在附近，運動量小且隨距離快速改變。又如北美—南美之間：地形上看不出邊界，但統計檢定顯示「兩板塊模型」對資料的改善超出隨機預期 → 確為兩個板塊，邊界是約 1 mm/yr 的漫散帶。經驗上 <b>1–2 mm/yr 是「板塊邊界」與「板內變形」的模糊分界</b>。</li>
+<li><b>可辨識的弱構造</b>：化石擴張脊（如約 43 Ma 停止的拉布拉多海脊）、熱點（百慕達、加那利、維德角）。最佳案例是<b>夏威夷</b>：小震伴隨裂谷岩漿上湧，大震（如 1975 Kalapana M<sub>s</sub> 7.2，引發海嘯）則是火山體沿其底部老洋殼頂的弱沉積層向外滑動；甚至有深達 48 km 的 M6.2 事件。</li>
+<li><b>看似孤立的地震</b>：最戲劇性的是 1998 Balleny 群島 M<sub>w</sub> 8.2（南極板塊海洋部分）——破裂面不沿任何已知構造、甚至切過破裂帶，前後百年該區無震。可能與南極冰蓋縮減的應力有關，成因未明。</li>
+</ol>
+<p><b>海洋板內群震</b>是另一謎題：無已知構造的區域突然活躍數年（如 1981–83 吉爾伯特群島，15 個月內偵測到 225 個地震、87 個 m<sub>b</sub>≥5），之後沉寂不再復發；無主震—餘震結構。這引出與大陸板內地震相同的難題：這些地點是「特殊構造」會再發？還是任何海洋岩石圈都可能輪到？答案影響災害評估的根本邏輯。</p>
+
+<h3>5.5.2 海洋岩石圈內的力與應力：ridge push</h3>
+<p>把板內震源機制按岩石圈年齡統計：<b>多數海洋岩石圈處於沿擴張方向的水平壓縮</b>（逆衝與走向滑移機制），主要例外是中印度洋的張裂事件——現已被重新解讀為印度—澳洲間的漫散邊界帶（靠近 Euler 極處正斷層、向東轉為逆衝與走向滑移，Ninetyeast 海脊上可達 M7）。</p>
+<p>壓縮的來源是 <dfn>ridge push</dfn>：冷卻下沉的岩石圈整體的熱浮力效應。對冷卻半空間模型積分水平壓力差可得：</p>
+<div class="formula">F<sub>R</sub> = g·α·ρ<sub>m</sub>·T<sub>m</sub>·κ·t　——不是「脊在推」：此力在脊軸為零、<b>隨板齡線性增加</b>，源於板內密度異常的累積</div>
+<p>它與 slab pull 形式相似（皆為熱浮力），差別在 κ 的角色：冷卻越快 ridge push 越大、加熱越快 slab pull 越小。把 ridge push、基底拖曳（σ<sub>b</sub> = C·u，C＝拖曳係數、u＝絕對速度）與脊軸強度放進簡單應力平衡：</p>
+<ul>
+<li>觀測「各年齡皆壓縮」⇒ 快速板塊（如太平洋 ~10 cm/yr）的<b>拖曳係數上限約 4 MPa/(m/yr)</b>。</li>
+<li>觀測「年輕岩石圈無大片正斷層帶」⇒ <b>脊軸近乎無強度</b>（弱）。</li>
+<li>由拖曳係數上限反推<b>地函黏滯度</b>：若回流發生在上部地函 700 km 內，平均黏滯度需 ≲ 2×10²⁰ poise；全地函流動則 ≲ 10²¹ poise——低於冰後回彈等方法估的 1–5×10²² poise。化解之道：板塊底下有<b>薄層低黏滯軟流圈</b>承擔回流、把板塊與深部地函「解耦」；這也與「板塊面積與絕對速度無相關」一致。</li>
+</ul>
+
+<div class="keycard">
+<h5>5.5 重點摘要</h5>
+<ul>
+<li>板內地震層級：慢速邊界（歐非、北美—南美）→ 弱構造（化石脊、熱點、夏威夷）→ 孤立事件（Balleny M8.2）與一次性群震。</li>
+<li>1–2 mm/yr 是邊界帶與板內變形的經驗分界。</li>
+<li>老海洋岩石圈普遍沿擴張方向壓縮 → ridge push（F ∝ 板齡）為主要板內應力源。</li>
+<li>由機制約束基底拖曳 → 推得低黏滯軟流圈使板塊與地函解耦。</li>
+</ul>
+</div>
+</section>
+
+<!-- ============ 5.6 ============ -->
+<section class="ch" id="s56">
+<h2><span class="no">5.6</span>大陸地震與構造：更厚、更輕、更複雜</h2>
+
+<p>大陸地殼厚、密度低、力學性質與海洋地殼不同，因此<b>大陸的板塊邊界普遍比海洋寬且複雜</b>。理解大陸演化的骨幹是 <dfn>Wilson 循環</dfn>（以 J. Tuzo Wilson 命名）：</p>
+
+<figure class="figure">
+<svg viewBox="0 0 880 210" role="img" aria-label="Wilson 循環示意">
+  <g font-size="12" text-anchor="middle">
+    <g transform="translate(70,30)">
+      <rect x="-55" y="40" width="110" height="34" fill="#C9B28A"/><path d="M-12,40 L0,58 L12,40" fill="#FBEFE6" stroke="#D4481F" stroke-width="2"/>
+      <text x="0" y="100">① 大陸張裂</text><text x="0" y="118" fill="#4A5266">裂谷（東非）</text>
+    </g>
+    <g transform="translate(250,30)">
+      <rect x="-60" y="40" width="44" height="34" fill="#C9B28A"/><rect x="16" y="40" width="44" height="34" fill="#C9B28A"/>
+      <rect x="-16" y="52" width="32" height="22" fill="#2B5B8A"/><path d="M-4,52 L0,44 L4,52" fill="#D4481F"/>
+      <text x="0" y="100">② 海底擴張開始</text><text x="0" y="118" fill="#4A5266">新洋盆（紅海）</text>
+    </g>
+    <g transform="translate(440,30)">
+      <rect x="-70" y="40" width="30" height="34" fill="#C9B28A"/><rect x="40" y="40" width="30" height="34" fill="#C9B28A"/>
+      <rect x="-40" y="52" width="80" height="22" fill="#2B5B8A"/><path d="M-4,52 L0,44 L4,52" fill="#D4481F"/>
+      <text x="0" y="100">③ 洋盆變寬</text><text x="0" y="118" fill="#4A5266">被動邊緣（大西洋）</text>
+    </g>
+    <g transform="translate(630,30)">
+      <rect x="-70" y="40" width="30" height="34" fill="#C9B28A"/><rect x="34" y="40" width="36" height="34" fill="#C9B28A"/>
+      <path d="M-40,52 L34,52 L60,86 L40,92 L18,64 L-40,74 Z" fill="#2B5B8A"/>
+      <path d="M40,40 L48,24 L56,40" fill="#D4481F"/>
+      <text x="0" y="110">④ 隱沒開始、洋盆關閉</text><text x="0" y="128" fill="#4A5266">安地斯型邊緣</text>
+    </g>
+    <g transform="translate(810,30)">
+      <path d="M-50,74 L-20,40 L10,40 L40,74 Z" fill="#C9B28A" stroke="#7A6233"/>
+      <path d="M-20,40 L-5,18 L10,40" fill="#A68A55"/>
+      <text x="-5" y="100">⑤ 大陸碰撞造山</text><text x="-5" y="118" fill="#4A5266">喜馬拉雅 → 回到①</text>
+    </g>
+  </g>
+  <g stroke="#0F6E6B" stroke-width="2" fill="none">
+    <line x1="140" y1="85" x2="178" y2="85" marker-end="url(#arr)"/>
+    <line x1="322" y1="85" x2="358" y2="85" marker-end="url(#arr)"/>
+    <line x1="512" y1="85" x2="548" y2="85" marker-end="url(#arr)"/>
+    <line x1="702" y1="85" x2="738" y2="85" marker-end="url(#arr)"/>
+  </g>
+  <text x="440" y="200" font-size="12" text-anchor="middle" fill="#4A5266">張裂可能中途失敗 → 留下「化石裂谷」（如美國中部 12 億年的 mid-continent rift）——日後板內地震的好發處</text>
+</svg>
+<figcaption><b>原創示意圖｜Wilson 循環。</b>大陸張裂 → 新洋盆 → 洋盆變寬 → 隱沒關閉 → 大陸碰撞造山，再回到張裂。阿帕拉契山脈即記錄了一次「前一代大西洋」的閉合（約 2.7 億年前），而現今大西洋是其後重新張開的產物。</figcaption>
+</figure>
+
+<h3>5.6.1 大陸的三種邊界帶</h3>
+<ul>
+<li><b>張裂：東非裂谷</b>。Nubia（西非）—Somalia（東非）間的擴張僅數 mm/yr（北約 6、南約 3 mm/yr），邊界帶寬而漫散；正斷層地震可深達 25–30 km——遠深於中洋脊，顯示活動裂谷下地殼出乎意料地冷而強。裂谷可能演化成新洋盆（紅海、亞丁灣已完成，速率約 16、22 mm/yr），也可能失敗而死。</li>
+<li><b>轉形：聖安德魯斯系統</b>。邊界帶寬達數百公里（海洋轉形 &lt;10 km）：主斷層吸收大部分運動（長期平均約 35 mm/yr，全邊界 ~48 mm/yr），其餘散布於 Basin and Range 的張裂（Borah Peak 正斷層）、Landers 等東側走向滑移、以及斷層彎曲處的逆衝事件（San Fernando 1971、Northridge 1994、Loma Prieta）。<b>災害意涵</b>：震動隨距離快速衰減，所以邊界帶內「較小但較近」的地震（Northridge M6.7）可能比主斷層上「較大但較遠」的地震更具破壞力。</li>
+<li><b>聚合：喜馬拉雅與地中海</b>。大陸地殼不隱沒 → 無 Wadati–Benioff 帶，但變形帶極寬。印度—歐亞碰撞：約一半聚合量由喜馬拉雅前緣逆衝（主中央/主邊界逆衝）吸收並造成毀滅性大震；西藏高原因增厚地殼自重而<b>側向伸展（正斷層）</b>；GPS 顯示大型地塊沿走向滑移斷層向東「<dfn>逃逸</dfn>」（escape/extrusion，經典類比：剛性壓頭壓入塑性黏土的實驗）；天山在西段吸收近一半聚合。地中海東部：安那托利亞被歐亞與北上的阿拉伯「擠」向西（沿北安那托利亞斷層 ~25 mm/yr 右移，1999 Izmit M<sub>s</sub> 7.4 造成逾三萬人罹難）；愛琴海域受 Hellenic 海溝後退牽引而伸張；高加索則為逆衝壓縮。</li>
+</ul>
+
+<h3>5.6.2 地震 vs 無震、暫態 vs 永久變形——安地斯的解剖</h3>
+<p>不同方法在不同時間尺度取樣變形（地震學：年；GPS：十年；古地震：千年；地質與地形：百萬年），整合它們是大陸構造的核心課題。<b>納茲卡—南美邊界帶</b>是經典案例。GPS 速度場由海岸向大陸內部平滑遞減，最佳擬合模型把 ~65 mm/yr 的總聚合拆成三份：</p>
+<table>
+<tr><th>分量</th><th class="mono">速率</th><th>性質</th></tr>
+<tr><td>板間界面閉鎖（彈性應變累積）</td><td class="mono">~35 mm/yr</td><td><b>暫態</b>：將於未來海溝大震釋放（地震滑移）</td></tr>
+<tr><td>海溝穩定滑動</td><td class="mono">~20 mm/yr</td><td>無震，不使上覆板塊變形</td></tr>
+<tr><td>東安地斯褶皺逆衝帶縮短</td><td class="mono">~10 mm/yr</td><td><b>永久</b>：造山；其中由地震矩總和估的縮短 &lt;2 mm/yr ⇒ 帶內變形<b>多為無震</b></td></tr>
+</table>
+<p>把帶內地震的矩張量加總（G<sub>ij</sub> = ΣM<sub>ij</sub>/(2μVt)）可估「地震應變率」，與測地比較得出地震變形比例。地中海—中東的彙整顯示比例因地而異：西土耳其、愛琴海近乎全地震，Zagros、Hellenic 海溝則大多無震。過去 10 Myr 的地質縮短方向與速率和今日 GPS 大致相同——<b>均變說的漂亮例證</b>：現在是理解過去的鑰匙。注意「地震矩赤字」的雙重解讀：可能是大震將至，也可能只是無震變形——這正是災害評估的根本困難。</p>
+
+<h3>5.6.3 大陸板內地震：New Madrid 的啟示</h3>
+<ul>
+<li>美國中部 New Madrid 在 1811–12 連續發生估計約 <b>M7 級</b>的大震，今日仍有微震。震源位於埋在密西西比河厚層沉積物之下的<b>古生代失敗裂谷</b>——板內地震常是區域應力<b>再活化既有弱帶</b>的結果。北美東部最大水平應力呈 NE–SW，與板塊驅動力預測一致。</li>
+<li>GPS 顯示北美板塊內部剛性極佳（殘差 &lt;1 mm/yr），但小應變率長期累積仍足以孕震：&lt;2 mm/yr × 500–1000 年 ≈ 1–2 m 滑移 ≈ M7。頻率—規模外插亦給出 M7 約每 1400 ± 600 年一次。</li>
+<li><b>板內 vs 邊界的災害邏輯不同</b>：大陸內部衰減低，同規模地震影響面積可比加州大上約一個規模單位的事件；但重現期長 10–100 倍，「該為罕見強震準備到什麼程度」成為政策難題。更麻煩的是：古地震與地形證據暗示個別板內震區可能只活躍數千年、之後<b>遷移</b>——New Madrid 未必是永久的危險區。</li>
+<li><b>被動大陸邊緣地震</b>：如 1929 Grand Banks M<sub>s</sub> 7.2（引發濁流切斷越洋電纜、海嘯致 27 死）。可能由冰荷移除或沉積物載重的應力再活化張裂遺留斷層；黏彈性鬆弛可解釋為何多數老被動邊緣大震罕見（早期沉積載重應力早已鬆弛）。</li>
+<li><b>熱點相關</b>：黃石熱點軌跡（蛇河平原）兩側地震排成拋物線（含 1959 Hebgen Lake M7.5、1983 Borah Peak M7.3），軌跡本身反而無震——熱與岩漿擾動的後果。</li>
+</ul>
+
+<div class="keycard">
+<h5>5.6 重點摘要</h5>
+<ul>
+<li>Wilson 循環：張裂 → 洋盆 → 隱沒關閉 → 碰撞造山 → 再張裂；失敗裂谷成為日後板內震源帶。</li>
+<li>大陸邊界帶寬：東非裂谷（深正斷層）、聖安德魯斯帶（數百公里寬）、喜馬拉雅（逆衝＋高原伸展＋逃逸構造）。</li>
+<li>變形四象限：地震／無震 × 暫態／永久。安地斯：~35 閉鎖（暫態）＋ ~20 穩滑 ＋ ~10 永久縮短（其中地震僅 1–2 成）。</li>
+<li>板內地震＝應力再活化古弱帶（New Madrid 古裂谷）；重現期長、可能遷移，災害評估困難。</li>
+</ul>
+</div>
+</section>
+
+<!-- ============ 5.7 ============ -->
+<section class="ch" id="s57">
+<h2><span class="no">5.7</span>斷層與變形：從岩石力學到地震循環</h2>
+
+<h3>5.7.1 流變學：岩石的三種「個性」</h3>
+<p><dfn>流變學</dfn>研究材料如何變形。把岩石樣本加壓，可能出現三種行為：</p>
+<ul>
+<li><b>彈性</b>：應力小時應變與應力成正比、卸載即回復（地震波通過岩石就是彈性行為，因為應變極小）。</li>
+<li><b>脆性破裂</b>：應力達到破裂強度 σ<sub>f</sub> 時岩石瞬間斷裂——這是斷層地震最簡單的模型。脆性破裂（偏離彈性）反而是彈性地震波的來源。</li>
+<li><b>塑性／延性</b>：應力超過降伏應力 σ<sub>o</sub> 後產生<b>永久</b>應變；卸載只回復彈性部分。常以「彈性—完全塑性」近似。</li>
+</ul>
+<p>實驗的關鍵發現：<b>低圍壓下岩石脆性、高圍壓下延性</b>（約 400 MPa 以下破裂、以上流動；中間有半脆性過渡）。地殼約 3 km 深即達 100 MPa，故脆—延轉換深度有限——這是「強岩石圈疊在弱軟流圈上」的微觀基礎。另一關鍵：<b>行為依時間尺度而異</b>——柏油路面短時間是固體、長時間會流動；地函對地震波是固體、對地質時間是流體。</p>
+
+<h3>5.7.2 岩石破裂與摩擦：Mohr 圓的語言</h3>
+<p>取主應力座標（σ₁ 最壓縮、壓縮為負），法線與 σ₁ 夾角 θ 的平面上：</p>
+<div class="formula">法向應力 σ = (σ₁+σ₂)/2 + [(σ₂−σ₁)/2]·cos2θ　　剪應力 τ = [(σ₂−σ₁)/2]·sin2θ</div>
+<p>所有方位平面的 (σ, τ) 落在 <dfn>Mohr 圓</dfn>上：圓心 ((σ₁+σ₂)/2, 0)、半徑 (σ₂−σ₁)/2。<b>Coulomb–Mohr 破壞準則</b>：當 |τ| = τ<sub>o</sub> − nσ（τ<sub>o</sub>＝凝聚強度、n＝內摩擦係數）的破壞線與 Mohr 圓相切時破裂，破裂面法線角 θ = φ/2 + 45°（tanφ = n）。岩石典型 n ≈ 1 ⇒ <b>斷層面距最大壓縮方向約 22.5°</b>（而非無摩擦時的 45°）——用震源機制 P/T 軸推應力方向時務必記得這個偏差。</p>
+<ul>
+<li><b>既有斷層 vs 新破裂</b>：既有斷層無凝聚強度，滑動線（τ = −μσ）低於破壞線 ⇒ 應力漸增時，<b>合適方位的舊斷層會先滑動</b>，新斷層難以形成。所幸地殼中各方位舊斷層都有，許多機制平均後的應力方向大致無偏。</li>
+<li><b>孔隙壓力</b>：流體壓力 P<sub>f</sub> 使有效法向應力 σ̄ = σ − P<sub>f</sub> 減小（較不壓縮）⇒ 更容易滑動。</li>
+<li><b>Byerlee 定律</b>（多種岩石的實驗彙整）：τ ≈ −0.85σ̄（|σ̄| &lt; 200 MPa）；τ ≈ 50 − 0.6σ̄（更深）。由此推得地殼強度：淺部 σ̄₁ ≈ 5σ̄₃ ⇒ <b>同一深度，地殼能承受的壓縮偏應力約為張性偏應力的數倍</b>（壓縮 ~ −4(ρgz+P<sub>f</sub>)、張性 ~ +0.8(ρgz+P<sub>f</sub>)）。南非礦井實測應力確實落在 Byerlee 乾岩界線之內。</li>
+</ul>
+
+<div class="lab" id="mohrlab">
+<h5>互動實驗 D｜MOHR 圓破裂實驗台</h5>
+<p style="font-size:.85rem">調整主應力與材料參數，觀察 Mohr 圓何時碰到破壞線（新破裂）或滑動線（舊斷層滑動）。壓縮為負。</p>
+<div class="row">
+  <div><label>σ₁（MPa，最壓縮）<span class="mono" id="m1v"></span></label><input type="range" id="m1" min="-500" max="-50" value="-300" step="10" style="width:190px"></div>
+  <div><label>σ₂（MPa）<span class="mono" id="m2v"></span></label><input type="range" id="m2" min="-200" max="0" value="-80" step="10" style="width:190px"></div>
+  <div><label>凝聚強度 τ₀（MPa）<span id="mtv"></span></label><input type="range" id="mt" min="0" max="120" value="50" step="5" style="width:150px"></div>
+  <div><label>內摩擦係數 n<span id="mnv"></span></label><input type="range" id="mn" min="0" max="1.2" value="0.85" step="0.05" style="width:150px"></div>
+</div>
+<canvas id="mohrcv" height="300"></canvas>
+<div class="out" id="mohrout"></div>
+<div class="note">綠線＝新破裂的破壞線 |τ|=τ₀−nσ；橘虛線＝既有斷層滑動線 |τ|=−nσ（無凝聚強度）。圓先碰到哪條線，就先發生哪種破壞。</div>
+</div>
+
+<h3>5.7.3–5.7.4 延性流動與岩石圈強度包絡線</h3>
+<ul>
+<li><b>Maxwell 黏彈性</b>＝彈簧（彈性，σ = Ee）串聯阻尼筒（黏性，σ = 2η de/dt）。施加固定應變後應力呈指數鬆弛，特徵時間 <b>τ<sub>M</sub> ≈ η/μ</b>。地函取 μ ≈ 10¹² dyn/cm²、η ≈ 10²² poise ⇒ τ<sub>M</sub> ~ 300 年：短於此地函像固體（地震波），長於此像流體（冰後回彈、對流）。應力鬆弛也解釋了為何沉積載重巨大的老被動邊緣反而少大震。</li>
+<li><b>延性流動律</b>：應變率 ∝ |σ₁−σ₃|ⁿ · A·exp[−(E*+PV*)/RT]，黏滯度隨溫度<b>指數下降</b>（汽車機油冷天變稠的相反方向）。n=1 為牛頓流體，地函常取 n=3。同溫下<b>石英遠弱於橄欖石</b> ⇒ 富石英的大陸地殼比富橄欖石的海洋岩石圈弱，大陸地震的限制溫度也較低。</li>
+<li><b>強度包絡線</b>：淺部由摩擦控制（強度隨深度／法向應力增加），深部由流動律控制（隨溫度急遽下降）⇒ <b>脆—延轉換處最強</b>。海洋岩石圈板內地震約以 750°C 等溫線為界；包絡線隨板齡加深，與彈性厚度、最深地震、低速帶深度隨齡增加一致。大陸則因石英弱下地殼，可能出現「<b>果醬三明治</b>」剖面：強上地殼＋弱下地殼＋較強上部地函——或可解釋大陸邊界帶為何寬而複雜、上地殼薄片為何逆衝堆疊造山。</li>
+</ul>
+
+<figure class="figure">
+<svg viewBox="0 0 880 300" role="img" aria-label="強度包絡線示意">
+  <g transform="translate(70,20)">
+    <line x1="0" y1="0" x2="0" y2="230" stroke="#1C2230" stroke-width="2"/>
+    <line x1="0" y1="0" x2="330" y2="0" stroke="#1C2230" stroke-width="2"/>
+    <text x="160" y="-6" font-size="12" text-anchor="middle">海洋（橄欖石）強度 |σ₁−σ₃| →</text>
+    <text x="-40" y="120" font-size="12" transform="rotate(-90 -40 120)">深度 →</text>
+    <path d="M0,0 L210,118 C150,150 60,170 18,182 L0,230" fill="#E3F0EF" stroke="#0F6E6B" stroke-width="2.5"/>
+    <circle cx="210" cy="118" r="5" fill="#D4481F"/>
+    <text x="222" y="114" font-size="12" fill="#D4481F">脆—延轉換＝最強處</text>
+    <text x="40" y="60" font-size="11" fill="#0F6E6B">摩擦控制：強度隨深度↑</text>
+    <text x="30" y="205" font-size="11" fill="#0F6E6B">流動律控制：隨溫度急降</text>
+  </g>
+  <g transform="translate(500,20)">
+    <line x1="0" y1="0" x2="0" y2="230" stroke="#1C2230" stroke-width="2"/>
+    <line x1="0" y1="0" x2="330" y2="0" stroke="#1C2230" stroke-width="2"/>
+    <text x="160" y="-6" font-size="12" text-anchor="middle">大陸（石英地殼＋橄欖石地函）</text>
+    <path d="M0,0 L150,62 C110,84 40,92 14,98 L14,120 L120,158 C90,180 40,196 12,204 L0,230" fill="#FBE9E1" stroke="#D4481F" stroke-width="2.5"/>
+    <text x="160" y="70" font-size="11" fill="#C23A12">上地殼強（石英摩擦段）</text>
+    <text x="160" y="110" font-size="11" fill="#C23A12">弱下地殼（石英流動）</text>
+    <text x="160" y="160" font-size="11" fill="#C23A12">Moho 下第二強峰（橄欖石）</text>
+    <text x="160" y="215" font-size="11" fill="#8a3a1a">「果醬三明治」剖面</text>
+  </g>
+</svg>
+<figcaption><b>原創示意圖｜強度包絡線。</b>左：海洋岩石圈單峰剖面，脆—延轉換處最強，地震約止於 750°C 等溫線。右：大陸因弱石英下地殼出現雙峰，可能是大陸變形帶寬而複雜的力學原因之一。</figcaption>
+</figure>
+
+<h3>5.7.5 黏滑（stick-slip）與地震循環</h3>
+<p>實驗室裡反覆對含斷層的岩樣加壓，會看到「累積—跳動釋放—再累積」的<b>黏滑</b>行為；高溫（花崗岩約 300°C 以上）則轉為<b>穩定滑動</b>——與地震有深度／溫度下限完全對應。黏滑的根源是<b>靜摩擦 &gt; 動摩擦</b>。經典「彈簧—滑塊」模型把它量化：</p>
+<div class="formula">滑塊質量 m、彈簧勁度 k、載入速率 v、靜/動摩擦差 Δμ、法向應力 σ：<br>
+單次滑移量 Δu = 2Δμσ/k　　應力降 Δf = 2Δμσ　　事件間隔 ∝ 1/v（由載入速率決定）</div>
+<ul>
+<li><b>翻譯成地震語言</b>：板塊運動速率決定大震<b>頻率</b>，但單次滑移與應力降取決於斷層摩擦性質與法向應力——快速邊界的大震較頻繁，並不因此更大。</li>
+<li><b>速率—狀態摩擦</b>：摩擦係數依滑動速率與「狀態變數」演化，淨變化由 (a−b) 決定：a−b &lt; 0（速度弱化）→ 可黏滑、孕震；a−b &gt; 0（速度強化）→ 穩定滑動。花崗岩 a−b 在約 300°C 變號 ⇒ 與強度論證殊途同歸地給出大陸地震深度下限。以此建構的斷層模型能重現地震循環（淺部黏滑、深部穩滑、震後滑移），但預測的是<b>規律</b>週期，與真實地震的高度變異不符——變異部分可能來自斷層間的應力交互作用。</li>
+<li><b>Coulomb 應力轉移</b>：定義 σ<sub>f</sub> = τ + μσ，某地震造成鄰近斷層的 Δσ<sub>f</sub> = Δτ + μΔσ；Δσ<sub>f</sub> &gt; 0（剪應力增或「鬆夾」）使鄰近斷層更接近破壞。實證：1971 San Fernando 地震提高了後來 1987 Whittier Narrows 與 1994 Northridge 區域的破壞應力；1906 舊金山大震造成「應力陰影」（之前 75 年灣區 14 次 M&gt;6，之後 75 年僅 1 次）；北安那托利亞斷層 60 年間大震序列向西逐步逼近伊斯坦堡。耐人尋味的是觸發應力僅 ~1 bar、只有典型應力降的 1–10%——只能觸發「本就接近破壞」的斷層，調整的是<b>時間</b>。</li>
+<li><b>聖安德魯斯（斷層強度）悖論</b>：若斷層剪應力如強度包絡線預期達數百 MPa，摩擦生熱（τv）應在斷層帶造成可測的熱流異常——<b>實測沒有</b>；且主壓應力方向近乎垂直斷層（理論預期約 23°），斷層像近自由面。兩者都指向斷層<b>遠比理論弱</b>。候選解釋（高孔隙壓、弱黏土斷層泥）各有困難，至今無共識。</li>
+</ul>
+
+<div class="lab" id="sliplab">
+<h5>互動實驗 E｜黏滑（STICK-SLIP）地震機</h5>
+<p style="font-size:.85rem">彈簧以固定速率拉動滑塊（板塊載入），靜摩擦被超越時滑塊瞬間滑動（地震）。調整參數觀察「間隔由載入速率決定、滑移量由摩擦差與勁度決定」。</p>
+<div class="row">
+  <div><label>載入速率 v <span id="sv1"></span></label><input type="range" id="sld_v" min="10" max="80" value="30" style="width:160px"></div>
+  <div><label>摩擦差 Δμ·σ <span id="sv2"></span></label><input type="range" id="sld_d" min="10" max="60" value="30" style="width:160px"></div>
+  <div><label>彈簧勁度 k <span id="sv3"></span></label><input type="range" id="sld_k" min="2" max="10" value="5" style="width:160px"></div>
+  <div><button id="srun">重新開始</button></div>
+</div>
+<canvas id="slipcv" height="220"></canvas>
+<div class="out" id="slipout"></div>
+<div class="note">下方曲線＝彈簧力隨時間（鋸齒＝應力累積與應力降）；上方＝滑塊累積位移（階梯＝一次次「地震」）。</div>
+</div>
+
+<h3>5.7.6 地震與區域變形：把岩石圈當流體</h3>
+<p>在寬廣邊界帶，可把岩石圈視為黏滯流體、用地震當「流場指示劑」。美國西部的分析：由測地＋斷層滑移＋板塊運動內插連續速度場 → 應變率張量場；與地形位能＋邊界力推得的應力場相除，得<b>垂直平均有效黏滯度</b>分布——聖安德魯斯沿線與西部大盆地低黏滯（弱下地殼）、Great Valley–Sierra Nevada 地塊高黏滯（近剛性）；帶內地震矩總和約佔總應變率的 60%。安地斯的 GPS 速率高於地質長期縮短率，可用「彈簧＋阻尼筒＋摩擦片」的黏彈塑性模型統一：GPS 量到含彈性暫態的瞬時速率，地質與地形記錄的是長期永久變形。大震後的<b>震後變形</b>（震後數年測站反向移動、應變率隨「距上次大震時間」衰減）可用軟流圈黏彈鬆弛或斷層深部餘滑解釋——兩者地表效應相似，是研究岩石圈流變的活實驗，甚至可能以「應力波」參與遠距觸發。</p>
+
+<div class="keycard">
+<h5>5.7 重點摘要</h5>
+<ul>
+<li>低圍壓脆性、高圍壓延性；行為依時間尺度而異（Maxwell 時間 τ<sub>M</sub> ≈ η/μ ~ 300 年）。</li>
+<li>Coulomb–Mohr：破壞線切 Mohr 圓即破裂；n≈1 ⇒ 斷層面距 σ₁ 約 22.5°；舊斷層先於新破裂滑動；孔隙壓力促滑。</li>
+<li>強度包絡線：脆—延轉換最強；海洋地震 ≲750°C；大陸「果醬三明治」。</li>
+<li>黏滑＝靜動摩擦差＋彈性載入；速率—狀態摩擦的 a−b 變號給出孕震深度下限。</li>
+<li>Coulomb 應力轉移（~1 bar）調整地震時程；1906 應力陰影、Izmit 西移序列。</li>
+<li>聖安德魯斯悖論（無熱流異常＋應力方向）顯示大斷層出奇地弱，成因未決。</li>
+</ul>
+</div>
+</section>
+
+<!-- ============ 延伸閱讀 ============ -->
+<section class="ch" id="reading">
+<h2><span class="no">＋</span>延伸閱讀方向</h2>
+<p>原書章末列有完整文獻清單，以下依主題歸納幾個值得深入的方向（請以原書 Further Reading 為準）：</p>
+<ul>
+<li><b>板塊構造史與基礎</b>：Menard 的參與者回憶、Cox 的經典論文選輯；運動學概念可看 Cox &amp; Hart；全球模型見 DeMets 等人的 NUVEL 系列論文。</li>
+<li><b>熱與力學</b>：Turcotte &amp; Schubert 的地球動力學教科書；海洋岩石圈熱演化（Parsons &amp; Sclater；Stein &amp; Stein 的 GDH1）；隱沒帶熱模型（McKenzie）。</li>
+<li><b>隱沒帶與深震</b>：Kanamori 關於海溝逆衝地震的回顧；深震綜述（Frohlich；Green &amp; Houston；Kirby 等）。</li>
+<li><b>大陸變形與太空測地</b>：Molnar、England &amp; Jackson 的大陸變形概念；Gordon 的板塊剛性與漫散邊界回顧；GPS 應用綜述（Dixon；Segall &amp; Davis）。</li>
+<li><b>岩石力學與摩擦</b>：Scholz 的專書（本章滑塊模型的主要出處）、Marone 的速率—狀態摩擦回顧；Stein 關於應力觸發的綜述。</li>
+</ul>
+</section>
+
+<!-- ============ 練習題 ============ -->
+<section class="ch" id="problems">
+<h2><span class="no">✎</span>練習題（原創，附詳解）</h2>
+<p>以下題目為依本章概念<b>自行設計</b>的練習，題型與原書習題精神相近但非逐題翻譯。建議先自己算，再展開詳解。</p>
+
+<details><summary>第 1 題｜轉形斷層的地震滑移收支</summary><div class="body">
+<p>某轉形斷層板塊運動速率 40 mm/yr。若該段斷層每 150 年發生一次特徵地震、每次滑移 3 m，請問地震滑移率為何？佔板塊運動的比例？這暗示什麼？</p>
+<p><b>詳解</b>：地震滑移率 = 3000 mm / 150 yr = 20 mm/yr，佔 40 mm/yr 的 <b>50%</b>。其餘一半板塊運動以無震方式（穩定滑動、震後／震間潛移）進行——與大西洋轉形及多數隱沒帶「耦合係數 &lt;1」的觀測一致。注意此估計強烈依賴取樣時間是否具代表性。</p>
+</div></details>
+
+<details><summary>第 2 題｜用 Euler 向量算速率</summary><div class="body">
+<p>Euler 極在站點北方角距 γ = 60°，|ω| = 0.6°/Myr，地球半徑 a = 6371 km。求站點的相對運動速率。</p>
+<p><b>詳解</b>：先換單位：0.6°/Myr × (π/180) = 1.047×10⁻² rad/Myr。速率 = a|ω|sinγ = 6371 km × 1.047×10⁻² /Myr × sin60° = 6371 × 0.01047 × 0.866 ≈ <b>57.8 km/Myr = 57.8 mm/yr</b>。記住 1 mm/yr = 1 km/Myr 的方便換算。</p>
+</div></details>
+
+<details><summary>第 3 題｜哪個隱沒帶會有深震？</summary><div class="body">
+<p>隱沒帶 A：板齡 45 Myr、速率 60 mm/yr、傾角 30°；隱沒帶 B：板齡 130 Myr、速率 90 mm/yr、傾角 60°。計算熱參數並判斷何者較可能有 300 km 以深的深震。</p>
+<p><b>詳解</b>：φ = t·v·sinδ（t 取 Myr、v 取 km/Myr=mm/yr，φ 得 km）。A：45×60×0.5 = <b>1350 km</b>；B：130×90×0.866 ≈ <b>10,130 km</b>。經驗門檻約 5000 km ⇒ <b>B 可能有深震、A 不會</b>。物理直覺：老（厚）且快、又陡傾下沉的板塊把「冷」帶得最深。</p>
+</div></details>
+
+<details><summary>第 4 題｜半空間冷卻的 √t 直覺</summary><div class="body">
+<p>10 Myr 的海床上某等溫線深 20 km。問 (a) 90 Myr 時該等溫線多深？(b) 若 10 Myr 處海深比脊軸深 1.0 km，90 Myr 處比脊軸深多少？</p>
+<p><b>詳解</b>：等溫線深度與海深下沉量皆 ∝ √t。√(90/10) = 3。(a) 20 × 3 = <b>60 km</b>。(b) 1.0 × 3 = <b>3.0 km</b>。（實際上 70 Ma 後板模型趨平，半空間外插會略高估。）</p>
+</div></details>
+
+<details><summary>第 5 題｜Mohr 圓與破裂角</summary><div class="body">
+<p>某岩石破壞線為 |τ| = 60 − 0.7σ（MPa，壓縮為負）。求破裂面法線與 σ₁ 的夾角 θ，以及斷層面與 σ₁ 的夾角。</p>
+<p><b>詳解</b>：n = tanφ = 0.7 ⇒ φ ≈ 35°。θ = φ/2 + 45° ≈ <b>62.5°</b>（法線）。斷層面與法線垂直，故斷層面與 σ₁ 夾角 = 90° − 62.5° = <b>27.5°</b>。內摩擦使斷層面比「45° 直覺」更靠近最大壓縮方向。</p>
+</div></details>
+
+<details><summary>第 6 題｜滑塊模型的地震類比</summary><div class="body">
+<p>彈簧—滑塊模型中，Δμσ = 30（單位力）、k = 5（單位力/單位位移）、載入速率 v = 2（位移/時間）。求每次滑移量、應力降與事件間隔；若板塊邊界載入速率加倍，三者如何變？</p>
+<p><b>詳解</b>：Δu = 2Δμσ/k = 60/5 = <b>12</b>；應力降 Δf = 2Δμσ = <b>60</b>；事件間隔 = Δu/v = 12/2 = <b>6</b>。載入速率加倍 ⇒ <b>間隔減半，但滑移量與應力降不變</b>——快速邊界大震更頻繁、不更大，正是觀測上「應力降在各種地震間相近」的合理化。</p>
+</div></details>
+
+<details><summary>第 7 題｜板內地震的重現期</summary><div class="body">
+<p>某大陸板內弱帶以 1.5 mm/yr 累積彈性應變。若一次 M7 地震需釋放約 1.2 m 滑移，估計重現期；並說明為何這類地區的災害評估特別困難（至少兩點）。</p>
+<p><b>詳解</b>：1200 mm ÷ 1.5 mm/yr = <b>800 年</b>。困難：① 重現期遠長於儀器與歷史紀錄，頻率—規模外插不確定性大；② 古地震與地形證據顯示板內震區可能僅活躍數千年後<b>遷移</b>，過去的活躍區未必是未來的；③（加分）低衰減使同規模地震影響範圍更大，且無板塊速率可校準應變收支。</p>
+</div></details>
+</section>
+
+<!-- ============ 測驗 ============ -->
+<section class="ch" id="quiz">
+<h2><span class="no">✓</span>綜合測驗（10 題）</h2>
+<p>每題單選。作答後立即顯示對錯與解析，最後按「計分」看總成績。</p>
+<div id="quizwrap"></div>
+<button id="scorebtn" class="" style="background:var(--ink);color:#fff;border:none;padding:10px 22px;border-radius:8px;font-weight:700;cursor:pointer;font-size:1rem">計分</button>
+<div class="scorebox" id="scoreout" hidden></div>
+</section>
+
+<footer>
+<p><b>關於本頁</b>：本頁為《An Introduction to Seismology, Earthquakes, and Earth Structure》（S. Stein &amp; M. Wysession）第五章之<b>原創中文學習摘要</b>，由筆記作者以自己的文字與圖解重新組織概念，僅供教學與個人學習；原書文字與圖件之版權屬原作者與出版社所有，深入研讀請購買或借閱原書。互動模擬使用之參數為教學用近似值。</p>
+</footer>
+<a class="toplink" href="#s51">▲ 回頂端</a>
+</main>
+</div>
+<script>
+/* ===== hero 合成地震波形 ===== */
+(function(){
+  const cv=document.getElementById('seismo');if(!cv)return;
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function fit(){cv.width=cv.clientWidth*2;cv.height=cv.clientHeight*2}
+  fit();window.addEventListener('resize',fit);
+  const ctx=cv.getContext('2d');let t=0;
+  function amp(x){ // 合成 P 波 → S 波 → 表面波包絡
+    const ph=(x%900);
+    let a=0.04*Math.sin(x*0.9);
+    if(ph>120&&ph<240)a+=0.28*Math.exp(-((ph-160)**2)/1800)*Math.sin(x*1.7);
+    if(ph>300&&ph<480)a+=0.55*Math.exp(-((ph-370)**2)/4200)*Math.sin(x*1.1);
+    if(ph>500&&ph<860)a+=0.9*Math.exp(-((ph-640)**2)/16000)*Math.sin(x*0.45);
+    return a;
+  }
+  function draw(){
+    const w=cv.width,h=cv.height,mid=h/2;
+    ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle='#E4E4DD';ctx.lineWidth=1;
+    for(let gx=0;gx<w;gx+=60){ctx.beginPath();ctx.moveTo(gx,0);ctx.lineTo(gx,h);ctx.stroke();}
+    ctx.beginPath();ctx.strokeStyle='#D4481F';ctx.lineWidth=2.4;
+    for(let x=0;x<w;x++){const y=mid-amp((x+t)*0.6)*mid*0.85;x?ctx.lineTo(x,y):ctx.moveTo(x,y);}
+    ctx.stroke();
+    ctx.fillStyle='#9aa0ad';ctx.font='20px JetBrains Mono';
+    ctx.fillText('P',w*0.13,26);ctx.fillText('S',w*0.32,26);ctx.fillText('Surface waves',w*0.55,26);
+  }
+  if(reduced){draw();return;}
+  (function loop(){t+=2.2;draw();requestAnimationFrame(loop)})();
+})();
+
+/* ===== A. Euler 計算器 ===== */
+(function(){
+  const D=Math.PI/180,a=6371;
+  document.getElementById('ebtn').addEventListener('click',()=>{
+    const[plat,plon,w]=document.getElementById('plsel').value.split(',').map(Number);
+    const lam=+document.getElementById('slat').value*D, mu=+document.getElementById('slon').value*D;
+    const th=plat*D, ph=plon*D, om=w*D; // rad/Myr
+    const vNS=a*om*Math.cos(th)*Math.sin(mu-ph);
+    const vEW=a*om*(Math.sin(th)*Math.cos(lam)-Math.cos(th)*Math.sin(lam)*Math.cos(mu-ph));
+    const rate=Math.hypot(vNS,vEW);
+    let az=90-Math.atan2(vNS,vEW)/D; az=((az%360)+360)%360;
+    const name=document.getElementById('plsel').selectedOptions[0].textContent;
+    document.getElementById('eout').innerHTML=
+     `板塊對：<b>${name} 相對 北美 NA</b><br>`+
+     `速率 = <b>${rate.toFixed(1)} mm/yr</b>（= ${rate.toFixed(1)} km/Myr）<br>`+
+     `方位角 = <b>N${az.toFixed(0)}°</b>（自北順時針）　[v_NS=${vNS.toFixed(1)}, v_EW=${vEW.toFixed(1)} mm/yr]`;
+  });
+})();
+
+/* ===== B. 冷卻模擬器 ===== */
+(function(){
+  const cv=document.getElementById('coolcv'),ctx=cv.getContext('2d');
+  const sl=document.getElementById('agesl');
+  const kappa=1e-6, Tm=1350, secMyr=3.15e13;
+  // erf 近似（Abramowitz-Stegun）
+  function erf(x){const s=x<0?-1:1;x=Math.abs(x);const t=1/(1+0.3275911*x);
+    const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return s*y;}
+  function inv(frac){ // 找 erf(s)=frac 的 s
+    let lo=0,hi=3;for(let i=0;i<40;i++){const m=(lo+hi)/2;erf(m)<frac?lo=m:hi=m;}return (lo+hi)/2;}
+  function draw(){
+    const age=+sl.value;document.getElementById('agev').textContent=age;
+    cv.width=cv.clientWidth*2;const W=cv.width,H=cv.height=480;
+    ctx.clearRect(0,0,W,H);
+    const maxAge=160,maxZ=130; // km
+    const x2px=t=>40+(W-70)*t/maxAge, z2px=z=>30+(H-70)*z/maxZ;
+    // 海床
+    ctx.strokeStyle='#7FD6CE';ctx.lineWidth=2;ctx.strokeRect(40,30,W-70,H-70);
+    ctx.fillStyle='#8FB5B0';ctx.font='18px JetBrains Mono';
+    ctx.fillText('年齡 →',W-130,H-14);ctx.save();ctx.translate(16,140);ctx.rotate(-Math.PI/2);ctx.fillText('深度 (km)',0,0);ctx.restore();
+    // 等溫線（半空間：z = 2 s √(κt)）
+    const isos=[300,600,900,1200];const cols=['#FFD24D','#FF9A6B','#FF6B3D','#E84A1F'];
+    isos.forEach((T,i)=>{
+      const s=inv(T/Tm);ctx.beginPath();ctx.strokeStyle=cols[i];ctx.lineWidth=2.4;
+      for(let t=0.5;t<=maxAge;t+=1){
+        const z=2*s*Math.sqrt(kappa*t*secMyr)/1000;
+        const X=x2px(t),Y=z2px(Math.min(z,maxZ));
+        t<1?ctx.moveTo(X,Y):ctx.lineTo(X,Y);
+      }
+      ctx.stroke();
+      const zl=2*s*Math.sqrt(kappa*maxAge*secMyr)/1000;
+      ctx.fillStyle=cols[i];ctx.fillText(T+'°C',W-118,z2px(Math.min(zl,maxZ))-6);
+    });
+    // 目前年齡線
+    ctx.strokeStyle='#fff';ctx.setLineDash([8,6]);ctx.beginPath();
+    ctx.moveTo(x2px(age),30);ctx.lineTo(x2px(age),H-40);ctx.stroke();ctx.setLineDash([]);
+    // 數值輸出
+    const s600=inv(600/Tm);
+    const z600=2*s600*Math.sqrt(kappa*age*secMyr)/1000;
+    const depth=2.6+ (2/Math.sqrt(Math.PI))*Math.sqrt(kappa*age*secMyr)*3.2e-5*3300*Tm/(3300-1000)/1000;
+    const q=3.1*Tm/Math.sqrt(Math.PI*kappa*age*secMyr)*1000;
+    document.getElementById('coolout').innerHTML=
+      `t = <b>${age} Myr</b>：600°C 等溫線深度 ≈ <b>${z600.toFixed(1)} km</b>（≈ 海洋板內地震深度量級）<br>`+
+      `預測海深 ≈ <b>${depth.toFixed(2)} km</b>（脊軸取 2.6 km）　海床熱流 ≈ <b>${q.toFixed(0)} mW/m²</b>`;
+  }
+  sl.addEventListener('input',draw);window.addEventListener('resize',draw);draw();
+})();
+
+/* ===== C. 熱參數 ===== */
+document.getElementById('pbtn').addEventListener('click',()=>{
+  const t=+document.getElementById('page2').value,v=+document.getElementById('prate').value,d=+document.getElementById('pdip').value;
+  const phi=t*v*Math.sin(d*Math.PI/180);
+  const deep=phi>=5000;
+  document.getElementById('pout').innerHTML=
+   `φ = ${t} Myr × ${v} mm/yr × sin${d}° = <b>${phi.toFixed(0)} km</b><br>`+
+   (deep?`<b style="color:#7FD6CE">φ ≥ 5000 km：屬「冷」隱沒帶，預期有 300 km 以深的深震（東加型）。</b>`
+        :`<b>φ &lt; 5000 km：板塊較快升溫，預期只有中源地震、無深震（阿留申型）。</b>`);
+});
+
+/* ===== D. Mohr 圓 ===== */
+(function(){
+  const ids=['m1','m2','mt','mn'];const cv=document.getElementById('mohrcv'),ctx=cv.getContext('2d');
+  function draw(){
+    const s1=+m1.value,s2=+m2.value,t0=+mt.value,n=+mn.value;
+    m1v.textContent=' '+s1; m2v.textContent=' '+s2; mtv.textContent=' '+t0; mnv.textContent=' '+n.toFixed(2);
+    cv.width=cv.clientWidth*2;const W=cv.width,H=cv.height=600;ctx.clearRect(0,0,W,H);
+    const x0=W-60,y0=H-90,sc=(W-160)/560; // σ 從 0 到 -560
+    const X=s=>x0+s*sc, Y=t=>y0-t*sc;
+    // 軸
+    ctx.strokeStyle='#2E5560';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(40,y0);ctx.lineTo(W-20,y0);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(x0,40);ctx.lineTo(x0,H-20);ctx.stroke();
+    ctx.fillStyle='#8FB5B0';ctx.font='18px JetBrains Mono';
+    ctx.fillText('← σ (壓縮為負)',60,y0+34);ctx.fillText('τ',x0-30,60);
+    // 破壞線 |τ|=t0-nσ 與滑動線 |τ|=-nσ
+    ctx.strokeStyle='#5EDB8A';ctx.lineWidth=2.5;ctx.beginPath();
+    ctx.moveTo(X(0),Y(t0));ctx.lineTo(X(-560),Y(t0+560*n));ctx.stroke();
+    ctx.strokeStyle='#FF9A6B';ctx.setLineDash([8,6]);ctx.beginPath();
+    ctx.moveTo(X(0),Y(0));ctx.lineTo(X(-560),Y(560*n));ctx.stroke();ctx.setLineDash([]);
+    // Mohr 圓
+    const c=(s1+s2)/2,r=Math.abs(s2-s1)/2;
+    ctx.strokeStyle='#9BE8FF';ctx.lineWidth=3;ctx.beginPath();
+    ctx.arc(X(c),Y(0),r*sc,0,Math.PI*2);ctx.stroke();
+    ctx.fillStyle='#9BE8FF';ctx.fillText('σ₁',X(s1)-10,y0+26);ctx.fillText('σ₂',X(s2)-10,y0+26);
+    // 距離判斷：點到線距離 vs 半徑
+    function dist(tau0){return Math.abs(n*c+tau0)/Math.hypot(n,1);} // 線 τ = tau0 - nσ → nσ+τ-tau0=0 在(σ=c,τ=0)
+    const dF=dist(t0),dS=dist(0);
+    let msg;
+    if(dS<=r&&dF<=r) msg='<b style="color:#FF9A6B">既有斷層滑動</b>與<b style="color:#5EDB8A">新破裂</b>條件皆達成——應力漸增情況下，舊斷層會先滑（所需剪應力較低）。';
+    else if(dS<=r) msg='<b style="color:#FF9A6B">既有斷層滑動！</b>圓已碰到滑動線，但尚未達新破裂條件——地殼中合適方位的舊斷層先動。';
+    else if(dF<=r) msg='<b style="color:#5EDB8A">新破裂形成！</b>（此參數組合下滑動線在破壞線之上，少見）';
+    else msg='穩定：Mohr 圓未觸及任何破壞／滑動線。試著增大 |σ₁| 或減小 |σ₂|（增大偏應力＝撐大圓）。';
+    const phi=Math.atan(n)*180/Math.PI, th=phi/2+45;
+    document.getElementById('mohrout').innerHTML=msg+
+      `<br>圓心=(${c.toFixed(0)},0)、半徑=${r.toFixed(0)} MPa；φ=${phi.toFixed(1)}° ⇒ 破裂面法線與σ₁夾角 θ=${th.toFixed(1)}°（斷層面距 σ₁ 約 ${(90-th).toFixed(1)}°）`;
+  }
+  ids.forEach(id=>document.getElementById(id).addEventListener('input',draw));
+  window.addEventListener('resize',draw);draw();
+})();
+
+/* ===== E. stick-slip ===== */
+(function(){
+  const cv=document.getElementById('slipcv'),ctx=cv.getContext('2d');
+  let F=0,U=0,T=0,hist=[],events=0,lastGap='—',lastT=0;
+  function params(){return{v:+sld_v.value/1000,d:+sld_d.value,k:+sld_k.value}}
+  function labels(){const p=params();sv1.textContent=' '+sld_v.value;sv2.textContent=' '+sld_d.value;sv3.textContent=' '+sld_k.value;}
+  ['sld_v','sld_d','sld_k'].forEach(id=>document.getElementById(id).addEventListener('input',labels));labels();
+  document.getElementById('srun').addEventListener('click',()=>{F=0;U=0;T=0;hist=[];events=0;lastGap='—';lastT=0;});
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function step(){
+    const p=params();
+    const Fs=p.d+20; // 靜摩擦門檻
+    F+=p.k*p.v*8; T+=1;
+    if(F>=Fs){ // 地震！
+      const du=2*p.d/p.k; U+=du; F-=2*p.d; events++;
+      lastGap=lastT?((T-lastT)).toFixed(0):'—'; lastT=T;
+    }
+    hist.push({F,U}); if(hist.length>520)hist.shift();
+    draw(p);
+    document.getElementById('slipout').innerHTML=
+     `事件數 <b>${events}</b>　單次滑移 Δu = 2Δμσ/k = <b>${(2*p.d/p.k).toFixed(1)}</b>　應力降 = <b>${2*p.d}</b>　最近事件間隔 ≈ <b>${lastGap}</b>（時間步）`;
+    if(!reduced)requestAnimationFrame(step);
+  }
+  function draw(p){
+    cv.width=cv.clientWidth*2;const W=cv.width,H=cv.height=440;ctx.clearRect(0,0,W,H);
+    ctx.font='17px JetBrains Mono';
+    // 上：位移階梯
+    ctx.strokeStyle='#9BE8FF';ctx.lineWidth=2.4;ctx.beginPath();
+    const Umax=Math.max(...hist.map(h=>h.U),1);
+    hist.forEach((h,i)=>{const x=30+i*(W-60)/520,y=170-150*h.U/Umax;i?ctx.lineTo(x,y):ctx.moveTo(x,y);});
+    ctx.stroke();ctx.fillStyle='#9BE8FF';ctx.fillText('累積位移（每階＝一次地震）',34,30);
+    // 下：彈簧力鋸齒
+    ctx.strokeStyle='#FF9A6B';ctx.beginPath();
+    const Fs=p.d+20;
+    hist.forEach((h,i)=>{const x=30+i*(W-60)/520,y=H-30-160*h.F/(Fs*1.15);i?ctx.lineTo(x,y):ctx.moveTo(x,y);});
+    ctx.stroke();
+    ctx.strokeStyle='#5EDB8A';ctx.setLineDash([6,6]);ctx.beginPath();
+    const yS=H-30-160*Fs/(Fs*1.15);ctx.moveTo(30,yS);ctx.lineTo(W-30,yS);ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle='#FF9A6B';ctx.fillText('彈簧力（鋸齒＝應力累積→應力降）',34,H-190);
+    ctx.fillStyle='#5EDB8A';ctx.fillText('靜摩擦門檻',W-200,yS-8);
+  }
+  if(reduced){for(let i=0;i<520;i++)step();}else step();
+})();
+
+/* ===== 測驗 ===== */
+(function(){
+  const QS=[
+   {q:'1. 判斷板塊邊界是張裂、聚合或轉形，依據是什麼？',o:['邊界的地形高低','兩側板塊的相對運動方向','地震規模大小','離 Euler 極的距離'],a:1,fb:'邊界型態由相對運動方向定義：離開邊界＝擴張、朝向邊界＝隱沒、平行邊界＝轉形。同一條邊界可同時包含三種。'},
+   {q:'2. 板塊相對運動的速率如何隨位置變化？',o:['整條邊界相同','離 Euler 極越遠越慢','離 Euler 極越遠越快（∝ sinγ）','只與板塊面積有關'],a:2,fb:'|v| = |ω||r|sinγ：角速度全板相同，線速度在極點為零、90° 處最大。'},
+   {q:'3. 轉形斷層上的滑移與洋脊段的偏移，正確的敘述是？',o:['滑移造成偏移且偏移持續增加','偏移是原有幾何，對稱擴張下轉形長度不變','轉形斷層整條（含破裂帶）都有地震','破裂帶上有強烈相對運動'],a:1,fb:'轉形≠平移斷層：偏移非滑移造成；地震僅在兩脊段之間的活動段，破裂帶無相對運動。'},
+   {q:'4. 半空間冷卻模型預測，岩石圈年齡變 4 倍時等溫線深度變為？',o:['4 倍','2 倍','不變','16 倍'],a:1,fb:'擴散過程的 √t 律：深度 ∝ √t，年齡×4 → 深度×2。海深下沉量亦同。'},
+   {q:'5. 快速擴張脊（>60 mm/yr）通常具有？',o:['中央裂谷與大量正斷層地震','軸部隆起、脊上幾乎無地震','深源地震','最大的轉形地震'],a:1,fb:'快脊較熱、可脆性破裂的層薄：軸隆、無裂谷正斷層；慢脊（如中大西洋脊）才有裂谷與正斷層地震。'},
+   {q:'6. 熱參數 φ = t·v·sinδ 約超過多少時，隱沒帶才觀測到 300 km 以深的深震？',o:['500 km','5000 km','50,000 km','沒有門檻'],a:1,fb:'φ ≳ 5000 km（如東加 ~17,000 km）才有深震；阿留申（~2500 km）僅中源地震。'},
+   {q:'7. 隱沒板塊內震源機制的典型深度規律是？',o:['全深度皆下傾張力','全深度皆下傾壓縮','約 300 km 以淺下傾張力、以深下傾壓縮','機制隨機'],a:2,fb:'像上下皆支撐的重力柱：上半張、下半壓。slab pull 大多被局部阻力平衡。'},
+   {q:'8. 410 km 與 660 km 相變在冷板塊內的偏移方向為？',o:['都上移','都下移','410 上移（助沉）、660 下移（阻沉）','410 下移、660 上移'],a:2,fb:'橄欖石→尖晶石為放熱（正 Clapeyron 斜率）→ 冷處變淺；尖晶石→鈣鈦礦為吸熱（負斜率）→ 變深。'},
+   {q:'9. 為何海溝逆衝地震能遠大於聖安德魯斯型轉形地震？',o:['海溝的岩石較硬','緩傾逆衝面的「冷區」破裂面積遠大於直立轉形','海溝板塊運動較快','轉形斷層沒有應力'],a:1,fb:'破裂受限於低於臨界溫度的區域；緩傾 megathrust 的冷區下傾延伸遠大於直立斷層 → 面積大、地震矩大。'},
+   {q:'10. 「聖安德魯斯悖論」指的是？',o:['斷層滑移方向與板塊運動相反','沿斷層無預期的摩擦熱流異常、且主應力近垂直斷層 → 斷層異常地弱','斷層上沒有任何地震','斷層每年滑移超過 1 公尺'],a:1,fb:'若剪應力如強度包絡線預期達數百 MPa，摩擦熱應可測得；實測無異常＋應力方向觀測 → 大斷層比理論弱得多，機制未決。'}
+  ];
+  const wrap=document.getElementById('quizwrap');
+  QS.forEach((Q,qi)=>{
+    const d=document.createElement('div');d.className='quiz';d.dataset.a=Q.a;
+    d.innerHTML='<div class="q">'+Q.q+'</div>'+Q.o.map((o,i)=>`<label><input type="radio" name="q${qi}" value="${i}" style="margin-right:8px">${o}</label>`).join('')+`<div class="fb">💡 ${Q.fb}</div>`;
+    wrap.appendChild(d);
+    d.addEventListener('change',e=>{
+      const pick=+e.target.value;
+      d.classList.add('done');
+      d.querySelectorAll('label').forEach((lb,i)=>{lb.classList.remove('ok','no');
+        if(i===Q.a)lb.classList.add('ok');else if(i===pick)lb.classList.add('no');});
+      d.dataset.pick=pick;
+    });
+  });
+  document.getElementById('scorebtn').addEventListener('click',()=>{
+    let s=0,t=QS.length;
+    document.querySelectorAll('.quiz').forEach(d=>{if(+d.dataset.pick===+d.dataset.a)s++;});
+    const box=document.getElementById('scoreout');box.hidden=false;
+    box.textContent=`成績：${s} / ${t}　`+(s===t?'🏆 完美！你已掌握本章核心。':s>=7?'👍 不錯，回頭看看答錯題的解析。':'📖 建議重讀重點摘要卡後再試一次。');
+  });
+})();
+
+/* ===== 導覽高亮 ===== */
+(function(){
+  const links=[...document.querySelectorAll('nav.depth a')];
+  const secs=links.map(l=>document.querySelector(l.getAttribute('href'))).filter(Boolean);
+  const obs=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting){
+      links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id));}});
+  },{rootMargin:'-20% 0px -70% 0px'});
+  secs.forEach(s=>obs.observe(s));
+})();
+</script>
+</body>
+</html>
