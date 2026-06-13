@@ -163,6 +163,22 @@ table.gloss tr.hide{display:none}
 .appcard.iris a.rlink:hover{color:var(--magma);border-color:var(--magma)}
 .irisnote{background:#F3EEFA;border:1px solid #D4C5E8;border-left:5px solid #7A4FA3;border-radius:14px;padding:16px 20px;margin:22px 0;font-size:.92rem}
 .irisnote h6{font-family:var(--serif);color:#5B3A82;font-size:1rem;margin:0 0 6px}
+
+/* ===== 基礎篇 ===== */
+.basebadge{display:inline-block;background:var(--amber);color:#3a2c08;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;border-radius:4px;padding:2px 9px;margin-bottom:8px}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:16px 0}
+@media(max-width:760px){.twocol{grid-template-columns:1fr}}
+.layercard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px}
+.layercard h6{font-family:var(--serif);color:var(--slab);margin:0 0 6px;font-size:1rem}
+.layercard table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:6px}
+.layercard td{border-bottom:1px solid var(--line);padding:4px 6px}
+.layercard td:last-child{text-align:right;font-family:var(--mono);color:var(--slab)}
+.cmp{width:100%;border-collapse:collapse;font-size:.86rem;background:#fff;margin:14px 0}
+.cmp th,.cmp td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+.cmp th{background:var(--slab);color:#fff;font-family:var(--serif)}
+.cmp tr:nth-child(even) td{background:#F4F8F7}
+.bridge{background:#EAF1EF;border:1px solid #BcD3CC;border-left:5px solid var(--teal);border-radius:14px;padding:14px 18px;margin:16px 0;font-size:.9rem}
+.bridge b{color:var(--teal)}
 </style>
 </head>
 <body>
@@ -170,6 +186,7 @@ table.gloss tr.hide{display:none}
 <nav class="depth" aria-label="章節導覽">
   <div class="brand"><b>地震學與板塊構造</b><span>CH.5 中文學習指南</span></div>
   <div class="depthlabel">地殼 CRUST ▾</div>
+  <a href="#base"><span class="no">5.0</span>基礎篇：板塊構造地基</a>
   <a href="#s51"><span class="no">5.1</span>簡介：板塊與地震</a>
   <a href="#s52"><span class="no">5.2</span>板塊運動學</a>
   <a href="#s53"><span class="no">5.3</span>擴張中心</a>
@@ -199,6 +216,127 @@ table.gloss tr.hide{display:none}
 </header>
 
 <!-- ============ 5.1 ============ -->
+<!-- ============ 基礎篇 ============ -->
+<section class="ch" id="base">
+<div class="basebadge">FOUNDATION · 進入第五章前的地基</div>
+<h2><span class="no">5.0</span>基礎篇：板塊構造的骨架</h2>
+<p>本站主軸第五章講「<b>地震如何揭露</b>板塊運動」，但要讀懂它，得先有一張板塊構造的地圖。這一篇把基礎框架整理清楚——地球怎麼分層、岩石圈與軟流圈差在哪、海底如何擴張、板塊被什麼力推動、三種邊界各長什麼樣、邊界上又會出現哪些地震與火山。內容為原創中文整理，圖解皆自繪示意，讀完即可無縫接上 5.1 節。</p>
+
+<h4>地球的兩套分層：一套看「成分」、一套看「狀態」</h4>
+<p>同一顆地球可以用兩種完全不同的標準切開，這是初學最容易混淆的地方。<span class="term">古典分層（化學成分）</span>把地球分成地殼、地函、地核三層，界線在「化學成分改變」之處；<span class="term">現代分層（物理狀態）</span>則依溫度、壓力增加造成的「軟硬／流動性」分成五層，界線在「力學行為改變」之處。關鍵體悟是：<em>岩石圈與軟流圈的界線並不等於地殼與地函的界線</em>——岩石圈包含了地殼<b>加上</b>最上部那層又冷又硬的地函。</p>
+
+<div class="twocol">
+<div class="layercard">
+<h6>① 依成分分（古典三層）</h6>
+<table>
+<tr><td>地殼 crust</td><td>矽鋁質，最薄</td></tr>
+<tr><td>地函 mantle</td><td>富鐵鎂矽酸鹽，約佔體積 82%</td></tr>
+<tr><td>地核 core</td><td>鐵鎳，外液內固</td></tr>
+</table>
+<p style="font-size:.8rem;color:var(--ink-soft);margin-top:8px">界線＝成分改變處。密度由地殼向地核遞增。</p>
+</div>
+<div class="layercard">
+<h6>② 依狀態分（現代五層）</h6>
+<table>
+<tr><td>岩石圈 lithosphere</td><td>硬固體（~0–100 km）</td></tr>
+<tr><td>軟流圈 asthenosphere</td><td>軟固體 · 部分熔融（~100–200+ km）</td></tr>
+<tr><td>下部地函 mesosphere</td><td>硬固體（~660–2900 km）</td></tr>
+<tr><td>外核 outer core</td><td>液態</td></tr>
+<tr><td>內核 inner core</td><td>固態（壓力極高）</td></tr>
+</table>
+<p style="font-size:.8rem;color:var(--ink-soft);margin-top:8px">界線＝力學行為改變處。深度數值為概略值。</p>
+</div>
+</div>
+
+<div class="bridge"><b>接到第五章：</b>本站 5.1 節開頭那句「岩石圈是地函對流的冷上邊界層」，講的就是這裡的現代分層——岩石圈之所以是「板塊」，正因為它冷、硬、能整塊移動；軟流圈之所以能讓板塊滑動，正因為它軟、可流動。5.3 節更進一步說：岩石圈的「厚度」本身會隨年齡冷卻而增加（√t 法則）。</div>
+
+<div class="summary">
+<h5>重點摘要</h5>
+<ul>
+<li><b>兩套分層別搞混</b>：成分分法看「化學界線」（殼／函／核）；狀態分法看「力學界線」（岩石圈／軟流圈…）。</li>
+<li><b>岩石圈 ≠ 地殼</b>：岩石圈＝地殼＋最上部冷硬地函；這是「板塊」能整塊運動的物理基礎。</li>
+<li><b>軟流圈是潤滑層</b>：約 100 km 以下的輕微部分熔融使其變軟，讓上方板塊得以滑移。</li>
+</ul>
+</div>
+
+<h4>海底擴張：板塊構造被接受的關鍵證據</h4>
+<p>20 世紀初 Wegener 提「大陸漂移」時不被接受，因為說不出「為什麼會動」。轉捩點在 1960 年代的海洋研究：海床玄武岩的<span class="term">磁異常條帶（magnetic anomaly stripes）</span>顯示——越靠近中洋脊、岩石越年輕，且兩側對稱。這催生了<span class="term">海底擴張（sea-floor spreading）</span>的概念：新的海洋地殼在中洋脊生成、向兩側移動，為大陸漂移提供了可行機制。同時，全球地震網發現地震沿板塊邊界排列、並在深海溝向陸側深入——這就是後來第五章主角「和達–班尼奧夫帶」的最初線索。</p>
+
+<div class="bridge"><b>接到第五章：</b>5.2 節說「磁異常給出擴張速率、轉形斷層與滑移向量給出方向」，反演出歐拉向量——這套方法的原料，就是這裡的海底擴張磁異常。5.3 節則把「新地殼在脊生成、冷卻、遠離」寫成冷卻模型。</div>
+
+<h4>板塊被什麼推動？三股力</h4>
+<p>板塊像輸送帶一樣在軟流圈上移動，動力來自地函散熱的對流系統，常拆成三個分量：</p>
+<ul class="plain">
+<li><span class="term">洋脊推力 ridge push</span>：中洋脊地形較高，冷卻變厚的岩石圈向兩側「滑落」的重力分量。</li>
+<li><span class="term">隱沒拉力 slab pull</span>：冷而緻密的下沉板塊靠負浮力把後方板塊「拖」下去——一般認為是最主要的力。</li>
+<li><span class="term">地函對流 convection</span>：地函物質的大尺度熱對流，板塊是其冷上邊界層。</li>
+</ul>
+
+<figure class="fig">
+<svg viewBox="0 0 760 300" role="img" aria-label="板塊驅動力示意圖：洋脊推力與隱沒拉力">
+<defs><linearGradient id="ast" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E8B98A"/><stop offset="1" stop-color="#C2491D"/></linearGradient></defs>
+<rect x="0" y="120" width="760" height="180" fill="url(#ast)"/>
+<text x="640" y="270" font-size="13" fill="#5C2615" font-family="Noto Sans TC">軟流圈（可流動）</text>
+<!-- ridge -->
+<polygon points="120,120 200,90 280,120" fill="#5E7D6C"/>
+<text x="160" y="80" font-size="12" text-anchor="middle" font-family="Noto Sans TC">中洋脊</text>
+<!-- left plate -->
+<rect x="0" y="120" width="200" height="26" fill="#1C4E66"/>
+<!-- right plate descending -->
+<polygon points="200,120 600,120 700,260 660,290 200,150" fill="#1C4E66"/>
+<text x="560" y="40" font-size="12" text-anchor="middle" font-family="Noto Sans TC">海溝</text>
+<line x1="600" y1="60" x2="600" y2="120" stroke="#15232E" stroke-dasharray="3 3"/>
+<!-- ridge push arrow -->
+<line x1="210" y1="133" x2="330" y2="133" stroke="#D9A441" stroke-width="6" marker-end="url(#ah)"/>
+<text x="270" y="125" font-size="12" fill="#7a5a12" text-anchor="middle" font-family="Noto Sans TC">洋脊推力</text>
+<!-- slab pull arrow -->
+<line x1="640" y1="240" x2="680" y2="290" stroke="#15232E" stroke-width="6" marker-end="url(#ah)"/>
+<text x="690" y="240" font-size="12" fill="#15232E" font-family="Noto Sans TC">隱沒拉力</text>
+<defs><marker id="ah" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#333"/></marker></defs>
+</svg>
+<figcaption><b>原創示意圖：</b>板塊像輸送帶在軟流圈上移動；脊處冷卻變厚的岩石圈「滑落」（ridge push），溝處冷重板塊「下拉」（slab pull）。本站 5.4 與 5.5 節有這兩股力的定量推導與比較。</figcaption>
+</figure>
+
+<h4>三種板塊邊界，三種地震與火山表現</h4>
+<p>所有板塊邊界都逃不出三類，差別只在「相對運動的方向」：</p>
+<table class="cmp">
+<thead><tr><th>邊界類型</th><th>相對運動</th><th>典型地震</th><th>火山？為何</th><th>實例</th></tr></thead>
+<tbody>
+<tr><td><b>張裂 divergent</b><br>（中洋脊／大陸裂谷）</td><td>兩側分離；產生新岩石圈</td><td>淺源、小到中等；正斷層為主</td><td><b>有</b>：上湧軟流圈<b>減壓熔融</b>，壓力下降→部分熔融增加</td><td>大西洋中洋脊、東非裂谷</td></tr>
+<tr><td><b>聚合 convergent</b><br>（隱沒帶／碰撞帶）</td><td>相向擠壓；岩石圈被消滅</td><td>淺到深（近 700 km）；逆衝為主，<b>最大地震在此</b></td><td><b>常有</b>：下沉板塊釋水→上覆地函楔熔融</td><td>安地斯、日本海溝、喜馬拉雅（碰撞無隱沒火山）</td></tr>
+<tr><td><b>轉形 transform</b></td><td>側向錯動；不生不滅</td><td>淺源；走滑為主</td><td><b>幾乎無</b>：溫度壓力不變、不熔融</td><td>聖安地列斯斷層、北安那托利亞斷層</td></tr>
+</tbody>
+</table>
+
+<div class="bridge"><b>接到第五章：</b>這張表是整個第五章的索引——5.3 節展開張裂邊界（中洋脊地震與冷卻）、5.4 節展開聚合邊界（隱沒帶與深震）、5.2／5.6 節談轉形與大陸邊界。「最大地震在聚合邊界」對應 5.4.3 節的巨型逆衝；「轉形幾乎無火山」對應其溫壓不變的本質。</div>
+
+<h4>邊界上的火山：三種岩漿生成方式</h4>
+<p>火山不是隨機出現，岩漿生成有明確的物理觸發：</p>
+<ul class="plain">
+<li><span class="term">減壓熔融（張裂邊界）</span>：軟流圈上湧、壓力驟降→部分熔融增加。中洋脊產生低矽的玄武岩質岩漿，由上而下形成枕狀玄武岩→席狀岩牆（輝長岩）→殘留橄欖岩，這套特徵層序稱為<span class="term">蛇綠岩套 ophiolite</span>。大陸裂谷的岩漿則因穿過大陸地殼而矽含量被拉高。</li>
+<li><span class="term">釋水熔融（聚合邊界）</span>：下沉板塊受熱釋出水，降低上覆地函楔的熔點→熔融。這對應本站 5.4 節「中源地震發生在島弧火山之下」的成因。</li>
+<li><span class="term">熱點 hotspot</span>：板塊內部的火山，與邊界無關。源自地函深處（或核函邊界）上升的<b>地函柱 plume</b>；板塊掠過固定熱點，留下年齡漸進的火山鏈。此處<b>溫壓不變、不熔融</b>是常態，唯有熱點打破這規則。</li>
+</ul>
+
+<div class="bridge"><b>接到第五章：</b>熱點正是 5.2.4 節「絕對板塊運動」的量尺（夏威夷—天皇海山鏈），也是 5.5、5.6 節板內地震與火山的成因之一。蛇綠岩套則是 5.3 節海洋地殼結構的地質紀錄。</div>
+
+<div class="summary">
+<h5>基礎篇總摘要</h5>
+<ul>
+<li><b>分層</b>：成分分（殼／函／核）vs 狀態分（岩石圈／軟流圈／下部地函／外核／內核）——岩石圈＝可移動的「板塊」。</li>
+<li><b>海底擴張</b>：磁異常條帶證實新地殼於脊生成、向兩側對稱擴張，是板塊構造被接受的關鍵；也是第五章測速的原料。</li>
+<li><b>驅動力</b>：ridge push＋slab pull＋對流；slab pull 一般最主要。</li>
+<li><b>三種邊界</b>：張裂（生、減壓熔融）／聚合（滅、最大地震、釋水熔融）／轉形（不生不滅、幾無火山）。</li>
+<li><b>火山觸發</b>：減壓／釋水／熱點三種機制，各對應不同構造位置。</li>
+</ul>
+</div>
+
+<div class="appcard" style="border-top-color:var(--amber);margin-top:18px">
+<h6>📚 本篇參考來源</h6>
+<p style="font-size:.85rem">本基礎篇之概念整理自 R. J. Lillie, <i>Whole Earth Geophysics: An Introductory Textbook for Geologists and Geophysicists</i>, Ch.2「Plate Tectonics」（地球分層、岩石圈／軟流圈系統、板塊邊界類型、邊界沿線的地震與火山表現等）。內容為原創中文摘要與說明，未重製原書文字或圖片，所有圖解為自繪示意圖。深入研讀請參閱原書。</p>
+</div>
+</section>
+
 <section class="ch" id="s51">
 <h2><span class="no">5.1</span>簡介：為什麼地震學與板塊構造分不開</h2>
 
