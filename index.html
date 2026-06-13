@@ -143,6 +143,17 @@ table.gloss tr.hide{display:none}
 .appcard details.deep summary::before{content:"▸ "}
 .appcard details.deep[open] summary::before{content:"▾ "}
 .appcard details.deep .dbody{font-size:.87rem;color:var(--ink);margin-top:8px;line-height:1.95;text-align:justify}
+
+/* ===== IRIS 教學資源 ===== */
+.appcard.res{border-top-color:var(--teal)}
+.appcard.res h6{color:var(--teal)}
+.appcard.res .rtype{display:inline-block;font-size:.66rem;font-family:var(--mono);background:#FBF0E0;border:1px solid #E3CB9C;border-radius:999px;padding:1px 9px;color:#8A6A1F;margin-left:6px;vertical-align:middle}
+.appcard.res a.rlink{display:inline-block;margin-top:8px;font-size:.82rem;font-weight:700;color:var(--magma);text-decoration:none;border-bottom:1.5px solid var(--magma)}
+.appcard.res a.rlink:hover{color:#A2350F}
+.roadmap{counter-reset:step;margin:18px 0}
+.roadmap li{list-style:none;position:relative;padding:10px 0 10px 52px;border-left:2px solid var(--line);margin-left:18px}
+.roadmap li::before{counter-increment:step;content:counter(step);position:absolute;left:-17px;top:12px;width:32px;height:32px;border-radius:50%;background:var(--teal);color:#fff;font-family:var(--mono);font-weight:600;display:flex;align-items:center;justify-content:center}
+.roadmap li b{color:var(--teal)}
 </style>
 </head>
 <body>
@@ -161,6 +172,7 @@ table.gloss tr.hide{display:none}
   <div class="depthlabel">學以致用 APPLY ▾</div>
   <a href="#apply"><span class="no">⚙</span>實務應用案例</a>
   <a href="#glossary"><span class="no">Aa</span>中英詞彙對照</a>
+  <a href="#iris"><span class="no">🎒</span>IRIS 教學資源</a>
   <div class="depthlabel">自我檢測 ▾</div>
   <a href="#reading"><span class="no">＋</span>延伸閱讀方向</a>
   <a href="#problems"><span class="no">✎</span>練習題（原創）</a>
@@ -724,7 +736,7 @@ table.gloss tr.hide{display:none}
 </div>
 <canvas id="slipcv" height="220"></canvas>
 <div class="out" id="slipout"></div>
-<div class="note">下方曲線＝彈簧力隨時間（鋸齒＝應力累積與應力降）；上方＝滑塊累積位移（階梯＝一次次「地震」）。</div>
+<div class="note">下方曲線＝彈簧力隨時間（鋸齒＝應力累積與應力降）；上方＝滑塊累積位移（階梯＝一次次「地震」）。想在課堂用實體教具重現這個模擬？見下方「IRIS 教學資源」的 Earthquake Machine 系列（木塊＋砂紙＋橡皮筋）。</div>
 </div>
 
 <h3>5.7.6 地震與區域變形：把岩石圈當流體</h3>
@@ -934,6 +946,119 @@ table.gloss tr.hide{display:none}
 </table>
 </div>
 <p style="font-size:.84rem;color:var(--ink-soft);margin-top:10px">找不到結果時請試試別的關鍵字；表格依 §5.1–§5.7 順序排列，可搭配各節「重點摘要卡」複習。</p>
+</section>
+
+
+<!-- ============ IRIS 教學資源 ============ -->
+<section class="ch" id="iris">
+<h2><span class="no">🎒</span>IRIS／EarthScope 教學資源精選</h2>
+<p>IRIS（現由 EarthScope Consortium 營運的 NSF SAGE 設施）的 <b>InClass</b> 資源庫收錄了大量免費的課程教案（Lesson）與課堂演示（Demonstration）。本節依「教案／演示、英文」的篩選條件（即 <a href="https://www.iris.edu/hq/inclass/search#type%5B%5D=3&type%5B%5D=4&language%5B%5D=1" target="_blank" rel="noopener">原始搜尋頁</a>），挑出與本章各節最對位的資源，並以本站自己的話說明「它教什麼、怎麼搭配本章使用」。資源原文與教材檔案請點連結取得；該站內容除另有註明外採 <b>CC BY 4.0</b> 授權（引用需保留出處）。</p>
+
+<h3>精選資源 × 章節對照</h3>
+<div class="appgrid">
+
+<div class="appcard res">
+<h6>Mapping Worldwide Earthquake Epicenters<span class="rtype">Activity｜入門</span></h6>
+<div class="tags"><span>§5.1 地震分布</span><span>§5.4 震源深度</span></div>
+<p>讓學生用 <b>IRIS Earthquake Browser（IEB）</b>互動地圖自己「畫出」板塊邊界：把全球震央按規模、深度上色後，5.1 節「地震勾勒邊界」的結論會自己浮現。提供 5 分鐘展示到一整學期追蹤的多種版本，非常適合當本章的開場課。</p>
+<div class="case"><b>搭配本站</b>：先做這個活動，再回頭看 5.1 節的「三種邊界」原創圖，學生會發現圖上的線就是自己剛剛畫出來的線。</div>
+<a class="rlink" href="https://www.iris.edu/hq/inclass/activities/mapping_worldwide_earthquake_epicenters" target="_blank" rel="noopener">前往資源 →</a>
+</div>
+
+<div class="appcard res">
+<h6>Plotting Earthquake Epicenters on a World Map<span class="rtype">Lesson｜入門</span></h6>
+<div class="tags"><span>§5.1 地震分布</span></div>
+<p>紙本版的震央定位課：學生取用 IRIS Seismic Monitor 的即時地震報告，手繪世界震央圖。兩節課的完整教案，從經緯度複習一路帶到「為什麼震央排成窄帶」的討論，適合沒有電腦教室的環境。</p>
+<div class="case"><b>搭配本站</b>：完成手繪圖後，用本站 5.1 節的摘要卡做總結提問：「窄帶以外的零星點是什麼？」——順勢引出 5.5／5.6 的板內地震。</div>
+<a class="rlink" href="https://www.iris.edu/hq/inclass/lesson/plotting_earthquake_epicenters" target="_blank" rel="noopener">前往資源 →</a>
+</div>
+
+<div class="appcard res">
+<h6>IRIS Earthquake Browser（IEB）<span class="rtype">Web 工具</span></h6>
+<div class="tags"><span>§5.4 Wadati–Benioff 帶</span><span>§5.1</span></div>
+<p>本章 5.4 節的「殺手級展示」：在 IEB 框選日本或東加，切換到 3D 視角旋轉震源雲，傾斜的 Wadati–Benioff 帶會立體浮現——比任何剖面圖都直觀。也可用深度配色重現本站首頁互動剖面的真實版。</p>
+<div class="case"><b>搭配本站</b>：操作 IEB 之後回到 5.4 節的「熱參數互動實驗」，讓學生驗證：東加（高 φ）有深震、卡斯卡迪亞（低 φ）沒有。</div>
+<a class="rlink" href="https://ds.iris.edu/ieb/" target="_blank" rel="noopener">前往工具 →</a>
+</div>
+
+<div class="appcard res">
+<h6>Discover Plate Boundaries Through Ground Motion &amp; Deformation<span class="rtype">Activity 三段式</span></h6>
+<div class="tags"><span>§5.2 太空大地測量</span><span>應用⑤ GNSS</span></div>
+<p>用真實 GPS 資料學板塊運動：以肢體動作模擬三種邊界、繪製速度向量、分析美西與阿拉斯加的變形與地震風險，並連結 ShakeAlert 與地科職涯角色扮演。等於把 5.2.3 節「太空大地測量」整段做成動手課。</p>
+<div class="case"><b>搭配本站</b>：做完向量分析後，用本站 5.2 節「歐拉速率計算器」驗算：離極愈遠速率愈快（v＝ωR sinγ），把活動量到的數字接回理論。</div>
+<a class="rlink" href="https://www.iris.edu/hq/inclass/activities/discover_plate_boundaries_through_ground_motion_and_deformation" target="_blank" rel="noopener">前往資源 →</a>
+</div>
+
+<div class="appcard res">
+<h6>Faults, Plate Tectonics &amp; Earthquake Hazards（系列頁）<span class="rtype">Sequence｜含 Big Squeeze</span></h6>
+<div class="tags"><span>§5.4 隱沒帶</span><span>§5.6 大陸變形</span><span>應用①</span></div>
+<p>一頁打包多組活動：「Pacific Northwest and the Big Squeeze」用壓縮彈簧示範 Juan de Fuca 板塊隱沒擠壓上覆板塊、再讀 GPS 向量與危害圖——正是應用①卡片裡 Cascadia 故事的課堂版；另含 Basin and Range 的 GPS 伸展活動，對應 5.6 節「寬廣的大陸邊界帶」。</p>
+<div class="case"><b>搭配本站</b>：先讀應用①的「深入解析」建立 Cascadia 脈絡，再做 Big Squeeze，學生會懂彈簧壓縮量為什麼能換算成「正在醞釀的地震」。</div>
+<a class="rlink" href="https://www.iris.edu/hq/inclass/sequences/faults_plate_tectonics_and_earthquake_hazards" target="_blank" rel="noopener">前往資源 →</a>
+</div>
+
+<div class="appcard res">
+<h6>Plate Movement — 200 Ma to Today<span class="rtype">Animation</span></h6>
+<div class="tags"><span>§5.2 磁異常定速率</span><span>§5.6 威爾遜旋迴</span></div>
+<p>由海底磁異常與陸上地質資料重建的兩億年板塊演化動畫：看大西洋張開、特提斯洋關閉、印度北漂撞上歐亞。它把 5.2 節「磁異常如何給出擴張速率」與 5.6 節威爾遜旋迴的抽象敘述變成一部會動的歷史。</p>
+<div class="case"><b>搭配本站</b>：播放時暫停在任一時刻，請學生指出當下的張裂、聚合、轉形邊界各在哪——即時檢驗 5.1 節的邊界判讀能力。</div>
+<a class="rlink" href="https://www.iris.edu/hq/inclass/animation/plate_movement__200_million_years_ago_to_today" target="_blank" rel="noopener">前往資源 →</a>
+</div>
+
+<div class="appcard res">
+<h6>Earthquake Machine 系列（單塊／雙塊）<span class="rtype">Lesson＋Demo</span></h6>
+<div class="tags"><span>§5.7 黏滑</span><span>§5.7 彈性回跳</span><span>應用④</span></div>
+<p>木塊＋砂紙＋橡皮筋的經典教具，與本站 5.7 節的黏滑模擬完全同構：橡皮筋＝岩石彈性、砂紙＝斷層摩擦、穩定拉動＝板塊運動。完整教案「Defining an Earthquake」帶學生分組實作並繪製時間—位移階梯圖；<b>雙塊版</b>更進一步：一塊滑動會把應力傳給鄰塊、使其更接近破壞——這就是庫倫應力轉移（應用④）的桌上演示。另有教具製作影片。</p>
+<div class="case"><b>搭配本站</b>：先玩本站 5.7 的「黏滑地震機」線上模擬建立預期，再做實體版對照；最後用雙塊版引出「主震如何觸發鄰段」的討論。</div>
+<a class="rlink" href="https://www.iris.edu/hq/inclass/lesson/defining_an_earthquake" target="_blank" rel="noopener">教案 →</a>　<a class="rlink" href="https://www.iris.edu/hq/inclass/video/earthquake_machine_demonstration_of_the_2block_model" target="_blank" rel="noopener">雙塊演示 →</a>　<a class="rlink" href="https://www.iris.edu/hq/inclass/video/earthquake_machine_parts_and_construction" target="_blank" rel="noopener">教具製作 →</a>
+</div>
+
+<div class="appcard res">
+<h6>Introduction to Faults and Plate Tectonics<span class="rtype">Activity｜3D 模型</span></h6>
+<div class="tags"><span>§5.7 應力與斷層</span><span>§5.1 邊界類型</span></div>
+<p>用可動手操作的 3D 紙模型認識正斷層、逆斷層、平移斷層與其受力方向，提供 5／15／30 分鐘三種版本，由「力—應力—應變」概念一路接到區域尺度的斷層判讀。是 5.7 節莫爾圓數學的具象前置。</p>
+<div class="case"><b>搭配本站</b>：操作模型後再開本站 5.7「莫爾圓破裂實驗台」，把「哪種力產生哪種斷層」從手感升級成定量判斷。</div>
+<a class="rlink" href="https://www.iris.edu/hq/inclass/activities/introduction_to_faults_and_plate_tectonics" target="_blank" rel="noopener">前往資源 →</a>
+</div>
+
+<div class="appcard res">
+<h6>入門影音講座系列（彈性回跳尺、泡棉斷層…）<span class="rtype">Video｜Demo</span></h6>
+<div class="tags"><span>§5.7 脆性破裂</span><span>§5.1 邊界類型</span></div>
+<p>一組短影音示範：用米尺彎曲到折斷講「彈性—脆性破裂—為何難以預測」、用泡棉塊演示三種斷層、用撲克牌講褶皺，並有三種板塊邊界的講解影片。每支都是 5–10 分鐘的課堂開胃菜。</p>
+<div class="case"><b>搭配本站</b>：米尺示範正對應 5.7 節「岩石先彈性變形、達破裂強度才斷」的應力—應變曲線；播完即可接本站的強度包絡線圖解。</div>
+<a class="rlink" href="https://www.iris.edu/hq/inclass/video/_introductory_earth__earthquakescience_lectures" target="_blank" rel="noopener">前往資源 →</a>
+</div>
+
+<div class="appcard res">
+<h6>Recent Earthquakes Teachable Moments<span class="rtype">時事教材</span></h6>
+<div class="tags"><span>全章</span><span>應用①–④</span></div>
+<p>每逢全球顯著地震，IRIS 會在一兩天內釋出該事件的教學簡報：構造背景、震源機制、歷史地震與動畫素材。等於把本章知識即時接上「昨天的新聞」，是維持課程新鮮感的最佳補給線。</p>
+<div class="case"><b>搭配本站</b>：拿到簡報後，用本站詞彙表當「翻譯機」——讓學生把簡報裡的 megathrust、aftershock、slip 等詞一一對回中文與定義。</div>
+<a class="rlink" href="https://www.iris.edu/hq/retm/" target="_blank" rel="noopener">前往資源 →</a>
+</div>
+
+</div>
+
+<h3>內化整理：一條四步的教學路線圖</h3>
+<p>把上述資源與本站互動實驗串成一個學習循環（由觀察 → 量化 → 機制 → 應用），這也是本章邏輯的課堂化：</p>
+<ol class="roadmap">
+<li><b>看見邊界（§5.1／5.4）</b>：用 IEB 畫全球震央、以深度上色，切 3D 看出 Wadati–Benioff 帶 → 回本站首頁互動剖面對照五種隱沒帶地震。</li>
+<li><b>量出速度（§5.2）</b>：做 GPS 向量活動量板塊運動 → 用本站「歐拉速率計算器」驗證 v＝ωR sinγ 的距極效應。</li>
+<li><b>理解機制（§5.7）</b>：泡棉斷層分清三種幾何 → 實體＋線上「地震機」體驗黏滑 → 莫爾圓實驗台把手感變成定量。</li>
+<li><b>接上應用（應用①–④）</b>：Big Squeeze 連 Cascadia 危害、雙塊地震機連應力轉移、Teachable Moments 連本週新聞 → 回到本站應用卡的深入解析收束。</li>
+</ol>
+
+<h3>內化整理：課堂常見迷思澄清</h3>
+<div class="keycard">
+<h5>使用這些教具時，老師最常需要糾正的四個誤解</h5>
+<ul>
+<li><b>黏滑（stick-slip）≠ 平移斷層（strike-slip）</b>：前者是「斷層運動的時間行為」（卡住—跳動），後者是「斷層的幾何型態」；任何幾何的斷層都可能黏滑。中文都常被簡稱「滑」，務必分開教。</li>
+<li><b>轉形斷層的錯動不是把洋脊「推開」的結果</b>：脊軸的錯開是先天幾何，轉形斷層長度在對稱擴張下不隨時間增加（5.3 節）；用兩張紙條反向抽動最容易演示。</li>
+<li><b>地震機的橡皮筋是「岩石的彈性」，不是板塊本身</b>：板塊運動（手的拉動）是穩定的，跳動的是斷層；這正是 5.7 節「穩定載入＋摩擦差 → 間歇釋放」的核心，避免學生誤以為「板塊忽動忽停」。</li>
+<li><b>深震不是板塊「熔化前的掙扎」</b>：5.4 節指出深源地震發生在<b>仍然夠冷</b>的板塊核心（熱參數夠大才有深震），可能與相變失穩有關——「愈深愈熱所以愈多地震」是方向完全相反的迷思。</li>
+</ul>
+</div>
+<p style="font-size:.84rem;color:var(--ink-soft)">出處與授權：本節所列資源均連向 IRIS / EarthScope（NSF SAGE）InClass 資料庫；各資源之文字、影片與教材版權歸原作者，站方標示除另註明外採 CC BY 4.0。本節之中文說明、搭配建議、路線圖與迷思整理為本站原創內容。</p>
 </section>
 
 <!-- ============ 延伸閱讀 ============ -->
