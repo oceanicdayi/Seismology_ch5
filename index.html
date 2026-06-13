@@ -179,6 +179,34 @@ table.gloss tr.hide{display:none}
 .cmp tr:nth-child(even) td{background:#F4F8F7}
 .bridge{background:#EAF1EF;border:1px solid #BcD3CC;border-left:5px solid var(--teal);border-radius:14px;padding:14px 18px;margin:16px 0;font-size:.9rem}
 .bridge b{color:var(--teal)}
+
+/* ===== Lillie 補章 ===== */
+.lcompare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+@media(max-width:680px){.lcompare{grid-template-columns:1fr}}
+.lcol{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px}
+.lcol.classical{border-top:4px solid var(--magma)}
+.lcol.modern{border-top:4px solid var(--teal)}
+.lcol h6{font-family:var(--serif);font-size:1rem;margin:0 0 8px}
+.lcol ul{margin:0 0 0 1.1em;font-size:.86rem}.lcol li{margin:5px 0}
+.lcol .badge{font-family:var(--mono);font-size:.7rem;background:var(--paper);border-radius:4px;padding:1px 6px;color:var(--ink-soft)}
+.bzcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:0}
+.bzcard.div{border-left:5px solid #2E7D5B}.bzcard.con{border-left:5px solid var(--magma)}.bzcard.tra{border-left:5px solid var(--amber)}
+.bzcard h6{font-family:var(--serif);margin:0 0 6px;font-size:1rem}
+.bzcard p{font-size:.86rem;margin:5px 0}
+.oreo{background:linear-gradient(180deg,#6B4A2E 0 18%,#FBF3DC 18% 82%,#6B4A2E 82% 100%);border-radius:10px;padding:14px 16px;color:#3A2A18;font-size:.86rem;border:1px solid #C9A87C;margin:10px 0}
+.oreo b{color:#5A3A1E}
+.srccredit{font-size:.78rem;color:var(--ink-soft);font-style:italic;margin-top:6px}
+
+/* ===== Lillie 補章隨堂測 ===== */
+.lquiz{margin:18px 0}
+.lq{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0}
+.lq .q{font-weight:700;margin-bottom:8px}
+.lq .lopt{display:block;width:100%;text-align:left;background:var(--paper);border:1.5px solid var(--line);border-radius:9px;padding:8px 14px;margin:6px 0;cursor:pointer;font-size:.92rem;font-family:'Noto Sans TC'}
+.lq .lopt:hover{border-color:var(--slab)}
+.lq .lopt.ok{border-color:#2E7D5B;background:#E2F1E9}
+.lq .lopt.no{border-color:var(--magma);background:#F8E6DE}
+.lq .lfb{display:none;font-size:.86rem;color:var(--ink-soft);border-top:1px dashed var(--line);margin-top:8px;padding-top:8px}
+.lq.done .lfb{display:block}
 </style>
 </head>
 <body>
@@ -199,6 +227,8 @@ table.gloss tr.hide{display:none}
   <a href="#apply"><span class="no">⚙</span>實務應用案例</a>
   <a href="#glossary"><span class="no">Aa</span>中英詞彙對照</a>
   <a href="#iris"><span class="no">🌐</span>IRIS 教學資源館</a>
+  <div class="depthlabel">補充教材 SUPPLEMENT ▾</div>
+  <a href="#lillie"><span class="no">📖</span>地球分層與板塊邊界</a>
   <a href="#iris"><span class="no">🎒</span>IRIS 教學資源</a>
   <div class="depthlabel">自我檢測 ▾</div>
   <a href="#reading"><span class="no">＋</span>延伸閱讀方向</a>
@@ -1347,6 +1377,195 @@ table.gloss tr.hide{display:none}
 </div>
 </section>
 
+
+<!-- ============ Lillie 補章 ============ -->
+<section class="ch" id="lillie">
+<h2><span class="no">📖</span>補充：地球的分層與板塊邊界全解（入門整合）</h2>
+<p>本章原文（Stein &amp; Wysession）假設讀者已有板塊運動學基礎，直接從進階主題切入。為了讓初學者站穩腳步，這一節依據另一本經典教科書 <i>Whole Earth Geophysics</i>（R. J. Lillie）第二章「板塊構造」的<b>概念</b>，補上「地球怎麼分層、板塊邊界有哪幾種、各自會長出什麼地形與災害」這塊地基。以下為原創中文整理與圖解，讀完再回頭看 5.1–5.7 會更順。</p>
+<p class="srccredit">概念來源：R. J. Lillie, <i>Whole Earth Geophysics</i>, Ch.2（地球分層、岩石圈／軟流圈系統、板塊邊界類型）。本節為原創摘要與重繪示意，不含原書文字與圖片。</p>
+
+<h4>同一顆地球，兩套分層方式</h4>
+<p>地球內部有<b>兩種分層觀點</b>，初學者最容易把它們混為一談。關鍵在於：一個按「成分（化學）」分，一個按「物理狀態（力學）」分——分界的深度與名稱都不一樣。</p>
+<div class="lcompare">
+<div class="lcol classical">
+<h6>① 古典分層：依化學成分</h6>
+<ul>
+<li><b>地殼 crust</b>　<span class="badge">密度 2–3 g/cm³</span>　富含矽（矽酸鹽），最薄一層，僅佔地球體積約 1%。</li>
+<li><b>地函 mantle</b>　<span class="badge">3.3→5.8 g/cm³</span>　富含鐵、鎂的矽酸鹽，約 30–2900 km 深，佔體積 82%。</li>
+<li><b>地核 core</b>　<span class="badge">10.8 g/cm³</span>　以鐵為主（含鎳等重元素），2900 km 至地心 6300 km，佔質量 32%。</li>
+</ul>
+<p style="font-size:.82rem;color:var(--ink-soft)">分界＝<b>成分突變</b>。20 世紀初由密度差異建立。</p>
+</div>
+<div class="lcol modern">
+<h6>② 現代分層：依物理狀態（溫度／壓力）</h6>
+<ul>
+<li><b>岩石圈 lithosphere</b>　硬固體，地表至約 100–200 km；含地殼＋最上部地函。</li>
+<li><b>軟流圈 asthenosphere</b>　軟（塑性）固體，約 100–350 km；含少量部分熔融，是板塊滑動的「潤滑層」。</li>
+<li><b>中圈／下部地函 mesosphere</b>　壓力太大又變回硬固體，約 350/700–2900 km。</li>
+<li><b>外核 outer core</b>　液態（鐵），2900–5100 km。</li>
+<li><b>內核 inner core</b>　壓力極大使同樣物質變回固態，5100–6300 km。</li>
+</ul>
+<p style="font-size:.82rem;color:var(--ink-soft)">分界＝<b>物理狀態漸變</b>。1960 年代地震波測速精進後建立。</p>
+</div>
+</div>
+<div class="keycard" style="margin-top:6px">
+<h5>一句話記住差別</h5>
+<ul>
+<li>地殼／地函的界線（莫氏不連續面 Moho）是<b>成分</b>界線，很<b>銳利</b>——地震波速從下地殼約 6.5 km/s 跳到地函約 8.2 km/s。</li>
+<li>岩石圈／軟流圈的界線是<b>物理狀態</b>界線，很<b>模糊</b>——同樣是地函橄欖岩，只是上面冷而硬、下面熱而軟。</li>
+<li><b>岩石圈 ≠ 地殼</b>：岩石圈＝地殼＋最上部那層「夠冷夠硬」的地函。這是最常見的初學者誤解。</li>
+</ul>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 760 360" role="img" aria-label="地球兩套分層對照原創示意圖">
+<defs>
+<radialGradient id="le1" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#7A3B1C"/><stop offset="46%" stop-color="#7A3B1C"/><stop offset="46%" stop-color="#C77B3C"/><stop offset="78%" stop-color="#C77B3C"/><stop offset="78%" stop-color="#E0A85A"/><stop offset="96%" stop-color="#E0A85A"/><stop offset="96%" stop-color="#5E7D6C"/></radialGradient>
+</defs>
+<text x="190" y="26" font-size="15" text-anchor="middle" font-family="Noto Serif TC" font-weight="700" fill="#C2491D">古典：依成分</text>
+<text x="570" y="26" font-size="15" text-anchor="middle" font-family="Noto Serif TC" font-weight="700" fill="#0F6E6B">現代：依物理狀態</text>
+<!-- left hemisphere -->
+<g transform="translate(190,200)">
+<circle r="150" fill="#E0A85A"/><circle r="117" fill="#C77B3C"/><circle r="70" fill="#7A3B1C"/>
+<line x1="0" y1="0" x2="0" y2="-150" stroke="#fff" stroke-dasharray="3 3"/>
+<text x="6" y="-130" font-size="11" fill="#fff" font-family="Noto Sans TC">地殼 crust</text>
+<text x="6" y="-95" font-size="12" fill="#3a2410" font-family="Noto Sans TC">地函 mantle</text>
+<text x="6" y="-40" font-size="12" fill="#fff" font-family="Noto Sans TC">地核 core</text>
+</g>
+<!-- right hemisphere -->
+<g transform="translate(570,200)">
+<circle r="150" fill="#9FB8AB"/><circle r="138" fill="#C9582E"/><circle r="120" fill="#7FA0AE"/><circle r="92" fill="#3E5E70"/><circle r="42" fill="#C9582E"/>
+<line x1="0" y1="0" x2="0" y2="-150" stroke="#fff" stroke-dasharray="3 3"/>
+<text x="6" y="-143" font-size="10" fill="#234" font-family="Noto Sans TC">岩石圈</text>
+<text x="6" y="-126" font-size="10" fill="#fff" font-family="Noto Sans TC">軟流圈</text>
+<text x="6" y="-103" font-size="10" fill="#dbe" font-family="Noto Sans TC">中圈/下部地函</text>
+<text x="6" y="-60" font-size="10" fill="#fff" font-family="Noto Sans TC">外核(液)</text>
+<text x="6" y="-15" font-size="10" fill="#fff" font-family="Noto Sans TC">內核(固)</text>
+</g>
+</svg>
+<figcaption><b>原創示意圖：</b>左半球依化學成分分三層、右半球依物理狀態分五層。注意右側「岩石圈」橫跨了左側的地殼與最上部地函——同一深度、兩種切法。</figcaption>
+</figure>
+
+<h4>為什麼軟流圈是「軟」的？一張相圖看懂</h4>
+<p>關鍵在<b>溫度與壓力如何隨深度變化</b>，以及它們如何跨過岩石的<b>部分熔融線</b>：</p>
+<ul class="plain">
+<li><b>壓力</b>隨深度<b>線性</b>增加（上覆岩石重量穩定累加）。</li>
+<li><b>溫度</b>隨深度<b>非線性</b>增加——淺處陡升、深處趨緩（正常地溫梯度）。</li>
+<li>地函的代表岩石是<b>橄欖岩 peridotite</b>。近地表低壓時約 1200°C 開始部分熔融、1900°C 全熔；到 300 km 高壓則需 2000°C／2700°C 才開始／完全熔融。</li>
+</ul>
+<p>把地溫曲線疊上熔融線，剛好切出三段：地表至約 100 km，橄欖岩又冷又硬 → <b>岩石圈</b>；約 100–350 km，溫度高到足以造成少量部分熔融 → 較軟的<b>軟流圈</b>；350 km 以下壓力主導、雖更熱卻又變硬 → <b>中圈</b>。這正是 5.3 與 5.4 節熱模型的物理起點：地震有沒有辦法發生、板塊軟不軟，歸根究柢都是「這塊岩石此刻離它的熔點有多遠」。</p>
+<div class="example"><span class="tag">類比 ANALOGY</span> 想像一根巧克力棒：剛從冰箱拿出來（淺、冷）硬得能折斷＝岩石圈；在手心握一下（中段、半融）變軟可彎＝軟流圈；但如果拿去深海高壓冷凍庫（深、高壓）又會變回硬塊＝中圈。同一塊巧克力，軟硬完全由當下的溫壓決定。</div>
+
+<div class="oreo">
+<b>奧利奧餅乾記憶法（原書的著名比喻）：</b>把岩石圈／軟流圈／中圈想成一塊奧利奧——上下兩片<b>硬餅乾</b>（岩石圈在上、中圈在下）夾著中間<b>軟夾心</b>（軟流圈）。150–400 km 之間「溫度偏高、壓力還不夠大」的特殊組合造就了這層軟夾心，板塊就是浮在這層夾心上緩慢滑動的硬餅乾碎片。
+</div>
+
+<h4>板塊邊界三型：地形與災害的總開關</h4>
+<p>板塊近乎剛性，變形與災害幾乎都集中在<b>邊界</b>。依相對運動方向，邊界分三型——這是把全球地震、火山、造山一次串起來的主幹（與本站 5.1 圖互相呼應）。</p>
+<div class="appgrid">
+<div class="bzcard div">
+<h6>① 張裂邊界 Divergent</h6>
+<p>兩板塊<b>分離</b>，軟流圈上湧、減壓熔融生成新岩石圈。主應力為<b>張力</b>→正斷層、裂谷。</p>
+<p><b>演化三階段：</b>大陸裂谷（東非裂谷、美國盆嶺區）→ 新生洋盆（紅海、加州灣）→ 成熟洋盆＋中洋脊（大西洋）。兩側留下「被動大陸邊緣」。</p>
+<p><b>地震：</b>淺而中小（脆性層僅上部約 20 km）。</p>
+</div>
+<div class="bzcard con">
+<h6>② 聚合邊界 Convergent</h6>
+<p>兩板塊<b>相撞</b>，較薄／較重者隱沒。主應力為<b>壓縮</b>→逆衝斷層、造山。依雙方地殼類型分三種：</p>
+<p><b>洋－洋：</b>島弧＋海溝＋增積楔（阿留申、小安地列斯、菲律賓）。<br>
+<b>洋－陸：</b>陸緣火山弧（安地斯、Cascade、日本）＝「活動／聚合大陸邊緣」。<br>
+<b>陸－陸：</b>無法隱沒 → 碰撞造山（喜馬拉雅、阿爾卑斯）。</p>
+<p><b>地震：</b>從淺到近 700 km 都有，最大型地震在此（巨型逆衝）。</p>
+</div>
+<div class="bzcard tra">
+<h6>③ 轉形邊界 Transform</h6>
+<p>兩板塊<b>水平錯動</b>、<b>不生不滅</b>岩石圈，常連接兩段中洋脊。地震只發生在兩脊段「之間」的活動段。</p>
+<p><b>實例：</b>聖安德列斯斷層（加州）、北安那托利亞斷層（土耳其）、Alpine 斷層（紐西蘭）。脊段外側的不活動延伸＝破裂帶（無地震）。</p>
+<p><b>地震：</b>淺源，可達中大規模。</p>
+</div>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 760 250" role="img" aria-label="三種板塊邊界原創示意圖">
+<!-- divergent -->
+<g transform="translate(20,30)">
+<text x="100" y="0" font-size="13" text-anchor="middle" font-family="Noto Serif TC" fill="#2E7D5B">① 張裂</text>
+<rect x="10" y="20" width="80" height="34" fill="#5E7D6C"/><rect x="110" y="20" width="80" height="34" fill="#5E7D6C"/>
+<rect x="0" y="54" width="200" height="40" fill="#C77B3C"/>
+<path d="M95,20 L100,8 L105,20 Z" fill="#C2491D"/>
+<line x1="60" y1="37" x2="20" y2="37" stroke="#15232E" stroke-width="2" marker-end="url(#ar)"/>
+<line x1="140" y1="37" x2="180" y2="37" stroke="#15232E" stroke-width="2" marker-end="url(#ar)"/>
+<text x="100" y="112" font-size="10" text-anchor="middle" font-family="Noto Sans TC" fill="#43545F">脊／裂谷 · 正斷層</text>
+</g>
+<!-- convergent -->
+<g transform="translate(280,30)">
+<text x="100" y="0" font-size="13" text-anchor="middle" font-family="Noto Serif TC" fill="#C2491D">② 聚合</text>
+<rect x="0" y="20" width="95" height="34" fill="#5E7D6C"/>
+<polygon points="100,20 200,20 200,54 130,54" fill="#1C4E66"/>
+<polygon points="100,20 130,54 110,94 90,60" fill="#1C4E66"/>
+<rect x="0" y="54" width="200" height="40" fill="#C77B3C"/>
+<line x1="50" y1="37" x2="88" y2="37" stroke="#15232E" stroke-width="2" marker-end="url(#ar)"/>
+<line x1="180" y1="37" x2="142" y2="37" stroke="#15232E" stroke-width="2" marker-end="url(#ar)"/>
+<text x="100" y="112" font-size="10" text-anchor="middle" font-family="Noto Sans TC" fill="#43545F">隱沒／海溝 · 逆衝</text>
+</g>
+<!-- transform -->
+<g transform="translate(540,30)">
+<text x="100" y="0" font-size="13" text-anchor="middle" font-family="Noto Serif TC" fill="#B8860B">③ 轉形</text>
+<rect x="0" y="20" width="200" height="34" fill="#5E7D6C"/>
+<rect x="0" y="54" width="200" height="40" fill="#C77B3C"/>
+<line x1="100" y1="20" x2="100" y2="54" stroke="#15232E" stroke-width="2.5"/>
+<line x1="60" y1="30" x2="140" y2="30" stroke="#15232E" stroke-width="2" marker-end="url(#ar)"/>
+<line x1="140" y1="46" x2="60" y2="46" stroke="#15232E" stroke-width="2" marker-end="url(#ar)"/>
+<text x="100" y="112" font-size="10" text-anchor="middle" font-family="Noto Sans TC" fill="#43545F">水平錯動 · 不生不滅</text>
+</g>
+<defs><marker id="ar" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#15232E"/></marker></defs>
+</svg>
+<figcaption><b>原創示意圖：</b>三種板塊邊界的剖面對照。綠＝岩石圈、橘＝軟流圈、深藍＝隱沒板塊。對照本站首頁的隱沒帶大圖，可把「②聚合」放大成完整的和達–班尼奧夫帶。</figcaption>
+</figure>
+
+<h4>板塊為什麼會動？三股力＋一個熱機</h4>
+<p>原書把驅動力歸納為三項，與本站 5.4、5.5 節的力學定量分析正好對上：</p>
+<ul class="plain">
+<li><b>地函對流 convection</b>：上湧處撐開板塊、下沉處把板塊往下拖，是把岩石圈不斷回收再造的大引擎。</li>
+<li><b>洋脊推力 ridge push</b>：中洋脊地勢高，重力使板塊從高處往外滑（本站 5.5 節有定量推導——其實力來自整片冷卻岩石圈的密度差，不是脊在「推」）。</li>
+<li><b>板塊拉力 slab pull</b>：隱沒板塊上的玄武岩變質成更緻密的<b>榴輝岩 eclogite</b>，負浮力把整片板塊往地函裡拉（本站 5.4 節定量分析其大小與被局部阻力平衡）。</li>
+</ul>
+<p>把這些放大到行星尺度，板塊構造其實就是地球這部<b>熱機</b>的散熱機制——這也呼應本站「實務應用⑧」談的比較行星學。</p>
+
+<h4>熱點與地函柱：邊界以外的例外</h4>
+<p>少數火山出現在板塊<b>內部</b>而非邊界，且年齡沿一條線<b>由新到老</b>排列——這是板塊掠過固定<b>熱點 hotspot</b>（深部地函柱 mantle plume 的產物）留下的軌跡。夏威夷—天皇海山鏈與黃石／蛇河平原是經典例子。由於熱點相對深部地函近乎固定，它成為量測板塊<b>絕對運動</b>的參考框（與本站 5.2.4 節相同）。</p>
+
+<div class="keycard">
+<h5>補充章重點摘要</h5>
+<ul>
+<li><b>兩套分層</b>：成分分三層（殼／函／核，界線銳利）vs 物理狀態分五層（岩石圈→內核，界線多漸變）；岩石圈≠地殼。</li>
+<li><b>軟流圈為何軟</b>：地溫曲線在 100–350 km 跨過橄欖岩部分熔融線；奧利奧「硬—軟—硬」記憶法。</li>
+<li><b>邊界三型</b>：張裂（張力／正斷層／淺震）、聚合（壓縮／逆衝／可達 700 km 深震／最大地震）、轉形（錯動／不生不滅／淺震）。</li>
+<li><b>聚合三子型</b>：洋–洋（島弧）、洋–陸（陸緣弧）、陸–陸（碰撞造山）。</li>
+<li><b>驅動力</b>：對流＋洋脊推力＋板塊拉力；熱點軌跡用來定絕對運動。</li>
+</ul>
+</div>
+
+<div class="lquiz">
+<div class="lq" data-a="2">
+<p class="q">隨堂小測 ①：下列何者正確描述「岩石圈」與「地殼」的關係？</p>
+<button class="lopt">岩石圈就是地殼的另一個名字</button>
+<button class="lopt">地殼比岩石圈更深、包含岩石圈</button>
+<button class="lopt">岩石圈＝地殼＋最上部那層夠冷夠硬的地函</button>
+<button class="lopt">兩者都依「化學成分」定義，界線相同</button>
+<p class="lfb">💡 正解第三項：岩石圈是<b>力學</b>單元（夠冷夠硬就算），跨越地殼與最上部地函；地殼／地函界線（Moho）才是<b>成分</b>界線，兩者定義方式與深度都不同。</p>
+</div>
+<div class="lq" data-a="1">
+<p class="q">隨堂小測 ②：哪一種板塊邊界「既不生成也不破壞」岩石圈？</p>
+<button class="lopt">張裂邊界</button>
+<button class="lopt">轉形邊界</button>
+<button class="lopt">聚合邊界</button>
+<button class="lopt">陸–陸碰撞帶</button>
+<p class="lfb">💡 正解第二項：轉形邊界板塊水平錯動、面積不增不減，地震集中在連接兩段中洋脊的活動段（如聖安德列斯斷層）。張裂生成新岩石圈、聚合破壞岩石圈。</p>
+</div>
+</div>
+</section>
+
 <!-- ============ 延伸閱讀 ============ -->
 <section class="ch" id="reading">
 <h2><span class="no">＋</span>延伸閱讀方向</h2>
@@ -1671,6 +1890,18 @@ document.getElementById('pbtn').addEventListener('click',()=>{
       if(hit&&lastSec)lastSec.classList.remove('hide');
     });
     if(!k)rows.forEach(r=>r.classList.remove('hide'));
+  });
+})();
+
+/* ===== Lillie 補章隨堂測（獨立）===== */
+(function(){
+  document.querySelectorAll('.lq').forEach(q=>{
+    const a=+q.dataset.a, opts=[...q.querySelectorAll('.lopt')];
+    opts.forEach((b,i)=>b.addEventListener('click',()=>{
+      if(q.classList.contains('done'))return;
+      q.classList.add('done');
+      opts.forEach((bb,j)=>{if(j===a)bb.classList.add('ok');else if(j===i)bb.classList.add('no');});
+    }));
   });
 })();
 </script>
